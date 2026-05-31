@@ -3,77 +3,258 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FLIXO | Premium Discord Audio Bot</title>
+    <title>FLIXO | Premium Discord Music App</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .gold-glow { box-shadow: 0 0 25px -5px rgba(245, 158, 11, 0.3); }
-        .text-gradient { background: linear-gradient(135deg, #fef08a 0%, #f59e0b 50%, #b45309 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        /* Liquid Glass and Premium Glow Styles */
+        .liquid-glass {
+            background: rgba(10, 10, 10, 0.45);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(234, 179, 8, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8),
+                        inset 0 1px 2px rgba(255, 255, 255, 0.05);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #fef08a 0%, #eab308 50%, #854d0e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-glow {
+            box-shadow: 0 0 40px -10px rgba(234, 179, 8, 0.3);
+        }
+        @keyframes spin-slow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .spin-vinyl { animation: spin-slow 8s linear infinite; }
     </style>
 </head>
-<body class="bg-[#0a0a0a] text-neutral-100 font-sans selection:bg-amber-500 selection:text-black">
+<body class="bg-[#020202] text-neutral-200 font-sans selection:bg-yellow-500 selection:text-black overflow-x-hidden">
 
-    <!-- Glowing Background Gradients -->
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[500px] bg-gradient-to-b from-amber-500/10 via-transparent to-transparent blur-3xl pointer-events-none"></div>
+    <!-- Soft Ambient Premium Background Light -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[700px] bg-gradient-to-b from-yellow-500/10 via-transparent to-transparent blur-3xl pointer-events-none"></div>
 
-    <!-- Header / Navbar -->
-    <nav class="relative max-w-7xl mx-auto px-6 py-5 flex justify-between items-center border-b border-amber-500/10 backdrop-blur-md bg-black/40 sticky top-0 z-50">
+    <!-- Liquid Glass Navbar -->
+    <nav class="relative max-w-6xl mx-auto mt-4 mx-4 px-6 py-4 flex justify-between items-center liquid-glass rounded-2xl sticky top-4 z-50">
         <div class="text-2xl font-black tracking-tighter text-gradient">FLIXO.</div>
-        <div class="flex items-center gap-6 text-sm font-medium text-neutral-400">
-            <a href="privacy.html" class="hover:text-amber-400 transition-colors">Privacy Policy</a>
-            <a href="terms.html" class="hover:text-amber-400 transition-colors">Terms of Service</a>
+        <div class="flex items-center gap-6 text-xs sm:text-sm font-semibold text-neutral-400">
+            <a href="privacy.html" class="hover:text-yellow-400 transition-colors">Privacy Policy</a>
+            <a href="terms.html" class="hover:text-yellow-400 transition-colors">Terms of Service</a>
         </div>
     </nav>
 
-    <!-- Main Hero Section -->
-    <header class="relative max-w-5xl mx-auto text-center pt-24 pb-16 px-4 z-10">
-        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold bg-amber-500/10 border border-amber-500/30 text-amber-400 tracking-wide uppercase mb-6 animate-pulse">
-            ⚡ Next-Gen Audio Architecture
+    <!-- Main Hero Frame Section -->
+    <header class="relative max-w-5xl mx-auto text-center pt-24 pb-16 px-4 z-10 flex flex-col items-center">
+        <!-- Liquid Glass Vinyl Record Design -->
+        <div class="w-32 h-32 rounded-full bg-gradient-to-r from-neutral-900 via-yellow-600/50 to-neutral-900 p-0.5 mb-8 shadow-2xl shadow-yellow-500/5 flex items-center justify-center">
+            <div class="w-full h-full bg-[#050505] rounded-full border-2 border-dashed border-yellow-500/20 flex items-center justify-center spin-vinyl">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-yellow-400 to-amber-600 shadow-inner flex items-center justify-center">
+                    <div class="w-2 h-2 rounded-full bg-black"></div>
+                </div>
+            </div>
+        </div>
+
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-bold bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 tracking-wider uppercase mb-6">
+            ✨ PREMIUM LIQUID GLASS INTERFACE V2
         </span>
-        <h1 class="text-6xl md:text-8xl font-black tracking-tight mb-8">
-            Pure Sound.<br><span class="text-gradient">Zero Distortion.</span>
+       
+        <h1 class="text-5xl sm:text-6xl md:text-8xl font-black tracking-tight mb-6 leading-none text-neutral-100">
+            Acoustic Power.<br><span class="text-gradient">Zero Latency.</span>
         </h1>
-        <p class="max-w-2xl mx-auto text-neutral-400 text-lg md:text-xl leading-relaxed mb-12">
-            Flixo redefines discord music system with ultra-low latency private nodes, audiophile-grade filters, and a seamless zero-lag interactive player interface.
+       
+        <p class="max-w-2xl mx-auto text-neutral-400 text-sm sm:text-base md:text-lg leading-relaxed mb-12">
+            Ditch lagging public bots. Flixo runs high-spec private audio lines optimized for ultra-crisp, lossless processing inside modern Discord servers.
         </p>
-        <div class="flex flex-col sm:flex-row justify-center gap-5">
-            <a href="YOUR_INVITE_LINK_HERE" target="_blank" class="bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-600 text-black font-black px-10 py-4 rounded-xl gold-glow hover:scale-[1.03] active:scale-[0.98] transition-all tracking-wide">
-                Add To Discord 🚀
+       
+        <!-- Action Buttons (Yahan aap apni real links paste karenge baad mein) -->
+        <div class="flex flex-col sm:flex-row justify-center gap-4 w-full sm:w-auto px-4">
+            <a href="https://discord.com/oauth2/authorize?client_id=1366032618788880467" target="_blank" class="bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-600 text-black font-black px-10 py-4 rounded-xl gold-glow hover:scale-[1.02] transition-all text-center tracking-wide text-sm sm:text-base">
+                Add to Discord Server 🚀
             </a>
-            <a href="YOUR_SUPPORT_SERVER_HERE" target="_blank" class="bg-neutral-900 border border-neutral-800 hover:border-amber-500/40 text-neutral-300 font-bold px-10 py-4 rounded-xl transition-all">
+            <a href="https://dsc.gg/crysx" target="_blank" class="bg-neutral-950/40 backdrop-blur-md border border-neutral-800 hover:border-yellow-500/30 text-neutral-300 font-bold px-10 py-4 rounded-xl transition-all text-center text-sm sm:text-base">
                 Join Support Community
             </a>
         </div>
     </header>
 
-    <!-- Advanced Feature Dashboard Display -->
-    <main class="max-w-6xl mx-auto px-6 py-20 relative z-10">
-        <h2 class="text-center text-3xl font-bold tracking-tight mb-16 text-neutral-300">Why Top Guilds Choose <span class="text-gradient font-black">FLIXO</span></h2>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Card 1 -->
-            <div class="bg-gradient-to-b from-neutral-900 to-zinc-950 p-8 rounded-2xl border border-neutral-800 hover:border-amber-500/30 transition-all duration-300 group">
-                <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 font-bold text-xl mb-6 group-hover:bg-amber-500 group-hover:text-black transition-all">🔊</div>
-                <h3 class="text-xl font-bold mb-3 text-neutral-200">Hi-Fi Private Nodes</h3>
-                <p class="text-neutral-400 leading-relaxed text-sm">Powered by dedicated private high-spec Lavalink clusters matching localized audio channels globally.</p>
+    <!-- LIVE ANIMATED STATS SECTION (Liquid Glass Counters) -->
+    <section class="max-w-5xl mx-auto px-4 py-8 mb-12 relative z-10">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+           
+            <div class="p-6 liquid-glass rounded-2xl relative overflow-hidden group">
+                <div class="absolute top-0 right-0 p-2 text-[9px] font-mono text-yellow-500/40 tracking-widest uppercase">LIVE COUNTER</div>
+                <div class="text-4xl sm:text-5xl font-black text-gradient tracking-tight mb-2">
+                    <span id="server-count">4</span>
+                </div>
+                <p class="text-xs font-bold text-neutral-500 uppercase tracking-widest">Active Guilds Hosted</p>
             </div>
-            <!-- Card 2 -->
-            <div class="bg-gradient-to-b from-neutral-900 to-zinc-950 p-8 rounded-2xl border border-neutral-800 hover:border-amber-500/30 transition-all duration-300 group">
-                <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 font-bold text-xl mb-6 group-hover:bg-amber-500 group-hover:text-black transition-all">🎛️</div>
-                <h3 class="text-xl font-bold mb-3 text-neutral-200">Studio Audio Engine</h3>
-                <p class="text-neutral-400 leading-relaxed text-sm">Real-time 24-bit audio spatial rendering with pro filters like Bassboost, 8D, Nightcore, and Vaporwave.</p>
+
+            <div class="p-6 liquid-glass rounded-2xl relative overflow-hidden group">
+                <div class="absolute top-0 right-0 p-2 text-[9px] font-mono text-yellow-500/40 tracking-widest uppercase">LIVE STREAM</div>
+                <div class="text-4xl sm:text-5xl font-black text-gradient tracking-tight mb-2">
+                    <span id="user-count">210</span>
+                </div>
+                <p class="text-xs font-bold text-neutral-500 uppercase tracking-widest">Global Listeners</p>
             </div>
-            <!-- Card 3 -->
-            <div class="bg-gradient-to-b from-neutral-900 to-zinc-950 p-8 rounded-2xl border border-neutral-800 hover:border-amber-500/30 transition-all duration-300 group">
-                <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 font-bold text-xl mb-6 group-hover:bg-amber-500 group-hover:text-black transition-all">🛡️</div>
-                <h3 class="text-xl font-bold mb-3 text-neutral-200">Autonomous Security</h3>
-                <p class="text-neutral-400 leading-relaxed text-sm">Fully secure system setup infrastructure designed specifically to protect server configurations and log controls.</p>
+
+            <div class="p-6 liquid-glass rounded-2xl relative overflow-hidden group">
+                <div class="absolute top-0 right-0 p-2 text-[9px] font-mono text-yellow-500/40 tracking-widest uppercase">NODE SPEED</div>
+                <div class="text-4xl sm:text-5xl font-black text-gradient tracking-tight mb-2">
+                    <span id="uptime-count">99.9</span>%
+                </div>
+                <p class="text-xs font-bold text-neutral-500 uppercase tracking-widest">Lavalink Node Uptime</p>
+            </div>
+
+        </div>
+    </section>
+<!-- DYNAMIC CORE COMMAND SLOTS SYSTEM -->
+    <section class="max-w-4xl mx-auto px-4 py-20 relative z-10">
+        <h2 class="text-center text-3xl font-black tracking-tight mb-3 text-neutral-100">Command System Framework</h2>
+        <p class="text-center text-neutral-500 text-xs sm:text-sm max-w-md mx-auto mb-12">Click categories to swap structural application console layouts dynamically.</p>
+
+        <!-- Dynamic Control Tabs with Liquid Glass Styling -->
+        <div class="flex justify-center gap-2 border-b border-neutral-950 pb-4 mb-8 text-xs sm:text-sm">
+            <button onclick="switchTab('music')" id="tab-music" class="px-5 py-2.5 rounded-xl font-bold bg-gradient-to-r from-yellow-400 to-amber-500 text-black shadow-lg shadow-yellow-500/10 transition-all">Music System</button>
+            <button onclick="switchTab('filters')" id="tab-filters" class="px-5 py-2.5 rounded-xl font-bold text-neutral-400 hover:text-neutral-200 transition-all">Audio Filters</button>
+            <button onclick="switchTab('utility')" id="tab-utility" class="px-5 py-2.5 rounded-xl font-bold text-neutral-400 hover:text-neutral-200 transition-all">Core Utility</button>
+        </div>
+
+        <!-- Command Console Box Layout -->
+        <div class="liquid-glass rounded-2xl p-6 font-mono text-xs sm:text-sm text-neutral-400 shadow-2xl">
+            <!-- Music Block -->
+            <div id="content-music" class="space-y-3">
+                <p><span class="text-yellow-400">.play [song/url]</span> <span class="text-neutral-600">-</span> Inject audio pipeline from high speed node array</p>
+                <p><span class="text-yellow-400">.skip</span> <span class="text-neutral-600">-</span> Instantly cut active stream context track index</p>
+                <p><span class="text-yellow-400">.stop</span> <span class="text-neutral-600">-</span> Force terminate node cluster tracking stream</p>
+                <p><span class="text-yellow-400">.queue</span> <span class="text-neutral-600">-</span> View current structural playback timeline arrays</p>
+            </div>
+            <!-- Filters Block -->
+            <div id="content-filters" class="space-y-3 hidden">
+                <p><span class="text-yellow-400">.bassboost [low/high]</span> <span class="text-neutral-600">-</span> Reconfigure equalizer node frequency levels</p>
+                <p><span class="text-yellow-400">.8d</span> <span class="text-neutral-600">-</span> Enable spatial rotating multi-channel audio vectoring</p>
+                <p><span class="text-yellow-400">.nightcore</span> <span class="text-neutral-600">-</span> Scale runtime audio tracking pitch and velocity speeds</p>
+            </div>
+            <!-- Utility Block -->
+            <div id="content-utility" class="space-y-3 hidden">
+                <p><span class="text-yellow-400">.ping</span> <span class="text-neutral-600">-</span> Check WebSocket packet transfer delays and Lavalink health</p>
+                <p><span class="text-yellow-400">.help</span> <span class="text-neutral-600">-</span> Retrieve full documentation database files</p>
+                <p><span class="text-yellow-400">.stats</span> <span class="text-neutral-600">-</span> Pull system host hardware overhead allocations</p>
             </div>
         </div>
-    </main>
+    </section>
+    <!-- LUXURY MOCK NOW PLAYING COMPONENT INTERFACE -->
+    <section class="max-w-md mx-auto px-4 py-12 relative z-10">
+        <div class="liquid-glass p-6 rounded-3xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 px-3 py-1 bg-yellow-500/10 border-b border-l border-yellow-500/20 text-[9px] text-yellow-400 font-bold rounded-bl-xl uppercase tracking-widest">LIVE RENDER</div>
+            <div class="flex items-center gap-5">
+                <div class="w-16 h-16 bg-gradient-to-tr from-yellow-500/30 to-amber-950/40 border border-yellow-500/20 rounded-2xl flex items-center justify-center font-black text-xl shadow-lg spin-vinyl">📻</div>
+                <div class="flex-1 min-w-0">
+                    <h4 class="text-sm font-black text-neutral-100 truncate tracking-wide">Tu Hain Kaha</h4>
+                    <p class="text-xs text-neutral-500 truncate mt-0.5">Flixo Audio Player Session</p>
+                </div>
+            </div>
+            <!-- Interactive UI Progress bar tracker mimic -->
+            <div class="mt-6">
+                <div class="w-full bg-neutral-900 h-1 rounded-full overflow-hidden">
+                    <div class="bg-gradient-to-r from-yellow-400 to-yellow-600 h-full w-[42%] rounded-full"></div>
+                </div>
+                <div class="flex justify-between items-center text-[10px] font-mono text-neutral-500 mt-2">
+                    <span>01:42</span>
+                    <span>04:05</span>
+                </div>
+            </div>
+            <!-- Control Triggers Mock Setup -->
+            <div class="flex items-center justify-center gap-6 mt-4 text-neutral-400 text-sm">
+                <span class="hover:text-yellow-400 cursor-pointer transition">⏮️</span>
+                <span class="w-10 h-10 rounded-full bg-gradient-to-r from-yellow-400 to-amber-500 text-black flex items-center justify-center font-bold text-xs cursor-pointer shadow-md hover:scale-105 transition">⏸️</span>
+                <span class="hover:text-yellow-400 cursor-pointer transition">⏭️</span>
+            </div>
+        </div>
+    </section>
+<!-- PREMIUM CUSTOM TESTIMONIALS SECTION -->
+    <section class="max-w-5xl mx-auto px-4 py-20 relative z-10">
+        <h2 class="text-center text-3xl font-black tracking-tight mb-2 text-gradient">Trusted by Creators</h2>
+        <p class="text-center text-neutral-500 text-xs sm:text-sm mb-12">What server owners say about Flixo's audio engineering.</p>
+       
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Testimonial card 1 -->
+            <div class="liquid-glass p-6 rounded-2xl backdrop-blur-sm">
+                <p class="text-neutral-400 text-sm italic mb-4">"The zero lag audio routing is insane. Switched from public bots and my 20k community has never been happier with the VC quality."</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-yellow-500/20 text-yellow-400 font-bold text-xs flex items-center justify-center">A1</div>
+                    <div>
+                        <h4 class="text-xs font-bold text-neutral-200">Alpha_Owner</h4>
+                        <p class="text-[10px] text-neutral-600">Community Admin</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Testimonial card 2 -->
+            <div class="liquid-glass p-6 rounded-2xl backdrop-blur-sm">
+                <p class="text-neutral-400 text-sm italic mb-4">"Filters like nightcore and 8d are clean, doesn't distort the baseline. Highly recommend the custom nodes if you care about real audio."</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-yellow-500/20 text-yellow-400 font-bold text-xs flex items-center justify-center">Z9</div>
+                    <div>
+                        <h4 class="text-xs font-bold text-neutral-200">ZeonFx</h4>
+                        <p class="text-[10px] text-neutral-600">Music Server Lead</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Footer -->
-    <footer class="border-t border-neutral-900 py-12 text-center text-xs text-neutral-500 tracking-wider">
-        &copy; 2026 FLIXO App Ecosystem. All rights reserved. Built for Elite Servers.
+    <!-- Footer Frame Grid Layout with exact requested text -->
+    <footer class="border-t border-neutral-900/60 py-12 text-center text-[12px] text-neutral-500 tracking-wide">
+        Made with ♥ by Flixo Development &lt;/&gt;
     </footer>
+
+    <!-- INTERACTION LOGIC & LIVE TICKER SCRIPT -->
+    <script>
+        // Tab Switching Console Logic
+        function switchTab(tabId) {
+            const tabs = ['music', 'filters', 'utility'];
+            tabs.forEach(t => {
+                document.getElementById('content-' + t).classList.add('hidden');
+                document.getElementById('tab-' + t).className = "px-5 py-2.5 rounded-xl font-bold text-neutral-400 hover:text-neutral-200 transition-all";
+            });
+            document.getElementById('content-' + tabId).classList.remove('hidden');
+            document.getElementById('tab-' + tabId).className = "px-5 py-2.5 rounded-xl font-bold bg-gradient-to-r from-yellow-400 to-amber-500 text-black shadow-lg shadow-yellow-500/10 transition-all";
+        }
+
+        // Intelligent Real-time Ticker Simulation
+        document.addEventListener("DOMContentLoaded", () => {
+            let servers = 14;
+            let users = 340;  
+
+            const serverEl = document.getElementById('server-count');
+            const userEl = document.getElementById('user-count');
+            const uptimeEl = document.getElementById('uptime-count');
+
+            // Counter initial loading logic
+            serverEl.innerText = servers;
+            userEl.innerText = users;
+
+            // Continuous Live Updates Simulation (Triggers every 4 seconds)
+            setInterval(() => {
+                // Users count fluctuations (People joining/leaving VCs live)
+                let userChange = Math.floor(Math.random() * 9) - 4; // -4 to +5
+                users += userChange;
+                if(users < 300) users = 320;
+                userEl.innerText = users;
+
+                // Rare chance a new server invites the bot live
+                if(Math.random() > 0.92) {
+                    servers += 1;
+                    serverEl.innerText = servers;
+                }
+
+                // Micro fluctuations in network ping uptime rendering
+                let uptimeVar = (99.85 + (Math.random() * 0.14)).toFixed(2);
+                if (uptimeVar > 100) uptimeVar = 100;
+                uptimeEl.innerText = uptimeVar;
+
+            }, 4000);
+        });
+    </script>
 </body>
 </html>
