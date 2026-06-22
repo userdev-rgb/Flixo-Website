@@ -32,6 +32,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS Embed (For Glow, Blurs and Engine States) -->
     <style>
         .gold-glow { text-shadow: 0 0 20px rgba(212, 175, 55, 0.5); }
         .box-glow { box-shadow: 0 0 30px rgba(212, 175, 55, 0.05); }
@@ -41,6 +43,25 @@
             100% { transform: rotate(360deg); }
         }
         .animate-spin-slow { animation: spin-slow 25s linear infinite; }
+        
+        /* Smooth Fade Animation for Tabs */
+        .tab-section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+        }
+        .tab-section.active-section {
+            display: block;
+            opacity: 1;
+        }
+        
+        /* Pulse Animation for Status Dashboard */
+        @keyframes pulseIndicator {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+        .animate-pulse-dot { animation: pulseIndicator 2s infinite; }
     </style>
 </head>
 <body class="bg-darkBg text-white font-body selection:bg-gold selection:text-black overflow-x-hidden">
@@ -55,12 +76,13 @@
                 </div>
                 <span class="font-heading font-bold tracking-wide text-lg">OXELATE</span>
             </div>
+            <!-- Dynamic Tab Link Triggers -->
             <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
-                <a href="#" class="text-white hover:text-gold transition">Home</a>
-                <a href="#" class="hover:text-gold transition">Features</a>
-                <a href="#" class="hover:text-gold transition">Status</a>
-                <a href="#" onclick="openModal('tos-modal')" class="hover:text-gold transition">Terms</a>
-                <a href="#" onclick="openModal('privacy-modal')" class="hover:text-gold transition">Privacy</a>
+                <button onclick="switchTab('home')" id="btn-home" class="text-white hover:text-gold transition font-medium">Home</button>
+                <button onclick="switchTab('features')" id="btn-features" class="hover:text-gold transition font-medium">Features</button>
+                <button onclick="switchTab('status')" id="btn-status" class="hover:text-gold transition font-medium">Status</button>
+                <button onclick="openModal('tos-modal')" class="hover:text-gold transition font-medium">Terms</button>
+                <button onclick="openModal('privacy-modal')" class="hover:text-gold transition font-medium">Privacy</button>
             </div>
             <div class="flex items-center gap-3">
                 <a href="https://discord.gg/2xuxDxzXKh" target="_blank" class="px-5 py-2 rounded-full text-xs font-semibold bg-white/5 border border-white/10 hover:bg-white/10 transition">Support</a>
@@ -69,152 +91,172 @@
         </nav>
     </header>
 
-    <!-- 2. HERO SECTION (SPLIT LAYOUT LIKE XIERON) -->
-    <section class="max-w-6xl mx-auto px-4 pt-20 pb-16 relative">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            
-            <!-- Left Content Area -->
-            <div class="text-left order-2 lg:order-1">
-                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold/10 border border-gold/20 text-gold text-xs font-semibold tracking-wider uppercase mb-6">
-                    🛡️ Next-Generation Protection
+    <!-- ================= MAIN CONTENT WRAPPER ================= -->
+    <main class="min-h-[70vh]">
+
+        <!-- [TAB A] HOME SECTION -->
+        <div id="section-home" class="tab-section active-section">
+            <!-- HERO LAYOUT -->
+            <section class="max-w-6xl mx-auto px-4 pt-20 pb-16 relative">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <!-- Left Content Area -->
+                    <div class="text-left">
+                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold/10 border border-gold/20 text-gold text-xs font-semibold tracking-wider uppercase mb-6">
+                            🛡️ Next-Generation Protection
+                        </div>
+                        <h1 class="font-heading font-bold text-4xl sm:text-6xl uppercase tracking-tight leading-tight mb-6">
+                            <span class="text-gold gold-glow block">Fortified</span> Guild Control.
+                        </h1>
+                        <p class="text-gray-400 text-base sm:text-lg max-w-xl mb-10 leading-relaxed">
+                            Protect, automate, and elevate your community with ultra-high-speed security protocols designed for high-tier servers. Complete immune network against threats.
+                        </p>
+                        <div class="flex flex-col sm:flex-row items-center gap-4">
+                            <a href="https://discord.com/oauth2/authorize?client_id=1366032618788880467" target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold bg-gold text-black hover:bg-gold-glow transition shadow-[0_0_25px_rgba(212,175,55,0.3)] text-sm uppercase tracking-wider text-center">Add To Discord</a>
+                            <a href="https://discord.gg/2xuxDxzXKh" target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold bg-[#14141C] border border-white/10 hover:border-gold/40 transition text-sm uppercase tracking-wider text-center">Join Support Server</a>
+                        </div>
+                    </div>
+                    <!-- Right Content Area (Premium Framed Logo Showcase) -->
+                    <div class="flex justify-center lg:justify-end relative py-8">
+                        <div class="absolute w-72 h-72 rounded-full border border-gold/10 animate-spin-slow"></div>
+                        <div class="absolute w-80 h-80 rounded-full border border-dashed border-gold/5 animate-spin" style="animation-duration: 40s;"></div>
+                        <div class="relative w-72 h-72 sm:w-80 sm:h-80 p-4 rounded-3xl bg-[#121218] border border-gold/20 shadow-[0_0_55px_rgba(212,175,55,0.08)] flex items-center justify-center group transition-all duration-500 hover:border-gold/40">
+                            <div class="absolute inset-0 bg-gradient-to-tr from-gold/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"></div>
+                            <img src="logo.png" alt="Oxelate Brand" class="w-full h-full object-contain rounded-2xl relative z-10">
+                        </div>
+                    </div>
                 </div>
-                <h1 class="font-heading font-bold text-4xl sm:text-6xl uppercase tracking-tight leading-tight mb-6">
-                    <span class="text-gold gold-glow block">Fortified</span> Guild Control.
-                </h1>
-                <p class="text-gray-400 text-base sm:text-lg max-w-xl mb-10 leading-relaxed">
-                    Protect, automate, and elevate your community with ultra-high-speed security protocols designed for high-tier servers. Complete immune network against threats.
-                </p>
-                <div class="flex flex-col sm:flex-row items-center gap-4">
-                    <a href="https://discord.com/oauth2/authorize?client_id=1366032618788880467" target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold bg-gold text-black hover:bg-gold-glow transition shadow-[0_0_25px_rgba(212,175,55,0.3)] text-sm uppercase tracking-wider text-center">Add To Discord</a>
-                    <a href="https://discord.gg/2xuxDxzXKh" target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold bg-[#14141C] border border-white/10 hover:border-gold/40 transition text-sm uppercase tracking-wider text-center">Join Support Server</a>
+                <div class="flex items-center justify-start gap-6 mt-16 text-xs text-gray-500 font-medium border-t border-white/5 pt-6">
+                    <span class="flex items-center gap-1.5">🟢 99.9% Uptime</span>
+                    <span class="flex items-center gap-1.5">⚡ Secure</span>
+                    <span class="flex items-center gap-1.5">💎 Premium UI</span>
+                </div>
+            </section>
+
+            <!-- STATS GRID -->
+            <section class="max-w-6xl mx-auto px-4 py-12">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-cardBg border border-white/5 rounded-2xl p-6 relative overflow-hidden box-glow transition">
+                        <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-2">Active Servers</p>
+                        <div class="text-3xl font-heading font-bold text-gold blur-md select-none pointer-events-none">88,888+</div>
+                    </div>
+                    <div class="bg-cardBg border border-gold/20 rounded-2xl p-6 relative overflow-hidden box-glow transition">
+                        <p class="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-2">Bot Uptime</p>
+                        <div class="text-3xl font-heading font-bold text-gold gold-glow">99.9%</div>
+                    </div>
+                    <div class="bg-cardBg border border-white/5 rounded-2xl p-6 relative overflow-hidden box-glow transition">
+                        <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-2">Members Protected</p>
+                        <div class="text-3xl font-heading font-bold text-gold blur-md select-none pointer-events-none">9,999,999+</div>
+                    </div>
+                    <div class="bg-cardBg border border-gold/20 rounded-2xl p-6 relative overflow-hidden box-glow transition">
+                        <p class="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-2">Available Features</p>
+                        <div class="text-3xl font-heading font-bold text-gold gold-glow">50+ CMDS</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CATEGORIES SECTIONS (PREMIUM CARD COMPLETELY DELETED) -->
+            <section class="max-w-6xl mx-auto px-4 py-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-cardBg border border-white/5 p-8 rounded-2xl box-glow transition">
+                        <div class="w-10 h-10 bg-gold/10 rounded-xl flex items-center justify-center text-gold border border-gold/20 mb-6">🛡️</div>
+                        <h3 class="font-heading font-bold text-xl uppercase mb-3 text-gold">Next-Gen Antinuke</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Monitor audit logs in real-time with millisecond precision. Block rogue admins, auto-restore channels, and stop server destruction instantly before it even begins.</p>
+                    </div>
+                    <div class="bg-cardBg border border-white/5 p-8 rounded-2xl box-glow transition">
+                        <div class="w-10 h-10 bg-gold/10 rounded-xl flex items-center justify-center text-gold border border-gold/20 mb-6">🚪</div>
+                        <h3 class="font-heading font-bold text-xl uppercase mb-3 text-gold">Bulletproof AntiRaid</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Keep mass joins, malicious bot accounts, and automated script attacks out of your server. Custom age-filters and rapid detection keep your member list completely clean.</p>
+                    </div>
+                    <div class="bg-cardBg border border-white/5 p-8 rounded-2xl box-glow transition">
+                        <div class="w-10 h-10 bg-gold/10 rounded-xl flex items-center justify-center text-gold border border-gold/20 mb-6">🤖</div>
+                        <h3 class="font-heading font-bold text-xl uppercase mb-3 text-gold">Advanced Automod Escalation</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Go beyond simple word blocks. Our strike-based escalation handles spam, links, custom word-filters, and explicit images with zero human effort required.</p>
+                    </div>
+                    <div class="bg-cardBg border border-white/5 p-8 rounded-2xl box-glow transition">
+                        <div class="w-10 h-10 bg-gold/10 rounded-xl flex items-center justify-center text-gold border border-gold/20 mb-6">👑</div>
+                        <h3 class="font-heading font-bold text-xl uppercase mb-3 text-gold">Elite Multi-Owner Architecture</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">True decentralization for server owners. Assign secondary trusted administrators with distinct security permissions without compromising full ownership control.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- BLURRED COMMUNITY SHOWCASE -->
+            <section class="max-w-6xl mx-auto px-4 py-12 relative select-none pointer-events-none opacity-20 blur-xl">
+                <div class="grid grid-cols-4 gap-6">
+                    <div class="bg-cardBg p-6 rounded-2xl"><div class="w-12 h-12 bg-gray-700 rounded-full mb-4"></div><div class="h-4 bg-gray-700 w-3/4 rounded"></div></div>
+                    <div class="bg-cardBg p-6 rounded-2xl"><div class="w-12 h-12 bg-gray-700 rounded-full mb-4"></div><div class="h-4 bg-gray-700 w-3/4 rounded"></div></div>
+                    <div class="bg-cardBg p-6 rounded-2xl"><div class="w-12 h-12 bg-gray-700 rounded-full mb-4"></div><div class="h-4 bg-gray-700 w-3/4 rounded"></div></div>
+                    <div class="bg-cardBg p-6 rounded-2xl"><div class="w-12 h-12 bg-gray-700 rounded-full mb-4"></div><div class="h-4 bg-gray-700 w-3/4 rounded"></div></div>
+                </div>
+            </section>
+
+            <!-- FINAL CTA SECTION -->
+            <section class="max-w-4xl mx-auto px-4 py-12">
+                <div class="bg-[#14141C] border border-gold/20 rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden box-glow transition">
+                    <h2 class="font-heading font-bold text-2xl sm:text-4xl uppercase mb-4">Ready to Upgrade Your Server's Defense?</h2>
+                    <p class="text-gray-400 text-sm sm:text-base max-w-xl mx-auto mb-8">Deploy the ultimate hybrid security bot today. Setup takes less than two minutes.</p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <a href="https://discord.com/oauth2/authorize?client_id=1366032618788880467" target="_blank" class="w-full sm:w-auto px-8 py-4 bg-gold text-black font-bold rounded-xl text-xs uppercase tracking-wider hover:bg-gold-glow transition">Add To Discord</a>
+                        <a href="https://discord.gg/2xuxDxzXKh" target="_blank" class="w-full sm:w-auto px-8 py-4 bg-transparent border border-white/10 hover:border-gold/40 font-bold rounded-xl text-xs uppercase tracking-wider transition">Join Support Server</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- [TAB B] FEATURES SECTION (HIGH END BACKGROUND BLUR EFFECT) -->
+        <div id="section-features" class="tab-section max-w-4xl mx-auto px-4 pt-24 pb-16 relative">
+            <!-- Translucent Watermark Behind Blur Layer -->
+            <div class="absolute inset-0 overflow-hidden pointer-events-none select-none z-0">
+                <div class="absolute text-white/[0.02] text-7xl font-black tracking-widest top-12 left-10">ANTINUKE</div>
+                <div class="absolute text-white/[0.02] text-7xl font-black tracking-widest top-40 right-12">AUTOMOD</div>
+                <div class="absolute text-white/[0.02] text-7xl font-black tracking-widest bottom-20 left-24">ANTIRAID</div>
+                <div class="absolute text-white/[0.02] text-7xl font-black tracking-widest bottom-5 right-32">INFO</div>
+            </div>
+            <!-- Frosted Glass Container Overlay -->
+            <div class="relative z-10 bg-[#121218]/60 border border-gold/20 backdrop-blur-xl rounded-3xl p-8 sm:p-12 shadow-[0_0_50px_rgba(212,175,55,0.05)] max-w-2xl mx-auto">
+                <h2 class="font-heading font-bold text-2xl sm:text-3xl uppercase tracking-wide text-gold border-b border-white/5 pb-4 mb-6">⚙️ System Announcement: Under Development</h2>
+                <div class="space-y-6 text-gray-300 text-sm sm:text-base leading-relaxed">
+                    <p>Oxelate is currently under active development. Our team is working hard every single day to build new features, enhance security, and make the bot completely stable. The bot is not fully ready yet, but we are deploying live updates daily.</p>
+                    <p>All features and command modules will be listed here very soon. Thank you for your patience while we build the ultimate Discord protection bot.</p>
+                </div>
+                <div class="mt-10 pt-6 border-t border-white/5 text-gray-500 text-sm">
+                    Sincerely,<br>
+                    <span class="text-gold font-semibold tracking-wide">Development Team of Oxelate &lt;/&gt;</span>
                 </div>
             </div>
+        </div>
 
-            <!-- Right Content Area (Premium Framed Logo Showcase) -->
-            <div class="flex justify-center lg:justify-end order-1 lg:order-2 relative py-8">
-                <!-- Tech Orbit Rings Background -->
-                <div class="absolute w-72 h-72 rounded-full border border-gold/10 animate-spin-slow"></div>
-                <div class="absolute w-80 h-80 rounded-full border border-dashed border-gold/5 animate-spin" style="animation-duration: 40s;"></div>
+        <!-- [TAB C] STATUS SECTION (HIGH END BACKGROUND BLUR EFFECT) -->
+        <div id="section-status" class="tab-section max-w-4xl mx-auto px-4 pt-24 pb-16 relative">
+            <!-- Translucent Watermark Behind Blur Layer -->
+            <div class="absolute inset-0 overflow-hidden pointer-events-none select-none z-0">
+                <div class="absolute text-white/[0.02] text-7xl font-black tracking-widest top-8 right-20">ONLINE</div>
+                <div class="absolute text-white/[0.02] text-7xl font-black tracking-widest top-36 left-16">STABLE</div>
+                <div class="absolute text-white/[0.02] text-7xl font-black tracking-widest bottom-24 right-10">SHARDS</div>
+                <div class="absolute text-white/[0.02] text-7xl font-black tracking-widest bottom-8 left-40">NODES</div>
+            </div>
+            <!-- Frosted Glass Container Overlay -->
+            <div class="relative z-10 bg-[#121218]/60 border border-gold/20 backdrop-blur-xl rounded-3xl p-8 sm:p-12 shadow-[0_0_50px_rgba(212,175,55,0.05)] max-w-2xl mx-auto">
+                <h2 class="font-heading font-bold text-2xl sm:text-3xl uppercase tracking-wide text-gold border-b border-white/5 pb-4 mb-6">📊 Oxelate Status Dashboard</h2>
                 
-                <!-- Main Framed Container for Square Logo -->
-                <div class="relative w-72 h-72 sm:w-80 sm:h-80 p-4 rounded-3xl bg-[#121218] border border-gold/20 shadow-[0_0_55px_rgba(212,175,55,0.08)] flex items-center justify-center group transition-all duration-500 hover:border-gold/40">
-                    <div class="absolute inset-0 bg-gradient-to-tr from-gold/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"></div>
-                    <img src="logo.png" alt="Oxelate Brand" class="w-full h-full object-contain rounded-2xl relative z-10">
+                <!-- Live Pulse Status Row -->
+                <div class="inline-flex items-center gap-3 bg-green-500/10 border border-green-500/30 rounded-xl px-4 py-2.5 mb-6">
+                    <span class="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse-dot"></span>
+                    <span class="text-xs uppercase tracking-wider font-semibold text-green-400">Current Status: <code class="bg-black/40 px-2 py-0.5 rounded ml-1 text-green-300 font-mono text-[11px]">ONLINE & FULLY FUNCTIONAL</code></span>
                 </div>
-            </div>
 
-        </div>
-
-        <div class="flex items-center justify-start gap-6 mt-16 text-xs text-gray-500 font-medium border-t border-white/5 pt-6">
-            <span class="flex items-center gap-1.5">🟢 99.9% Uptime</span>
-            <span class="flex items-center gap-1.5">⚡ Secure</span>
-            <span class="flex items-center gap-1.5">💎 Premium UI</span>
-        </div>
-    </section>
-
-    <!-- 3. STATS SECTION (SERVER & USERS BLURRED) -->
-    <section class="max-w-6xl mx-auto px-4 py-12">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div class="bg-cardBg border border-white/5 rounded-2xl p-6 relative overflow-hidden box-glow transition">
-                <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-2">Active Servers</p>
-                <div class="text-3xl font-heading font-bold text-gold blur-md select-none pointer-events-none">
-                    88,888+
+                <div class="space-y-6 text-gray-300 text-sm sm:text-base leading-relaxed">
+                    <p>Oxelate is completely active and running smoothly. All security systems, antinuke modules, and automod filters are working perfectly without any delays.</p>
+                    <p>The bot is actively protecting all servers, sync operations are running at maximum speed, and our database connection is 100% stable. No issues or anomalies detected.</p>
                 </div>
-            </div>
-            <div class="bg-cardBg border border-gold/20 rounded-2xl p-6 relative overflow-hidden box-glow transition">
-                <p class="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-2">Bot Uptime</p>
-                <div class="text-3xl font-heading font-bold text-gold gold-glow">
-                    99.9%
-                </div>
-            </div>
-            <div class="bg-cardBg border border-white/5 rounded-2xl p-6 relative overflow-hidden box-glow transition">
-                <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-2">Members Protected</p>
-                <div class="text-3xl font-heading font-bold text-gold blur-md select-none pointer-events-none">
-                    9,999,999+
-                </div>
-            </div>
-            <div class="bg-cardBg border border-gold/20 rounded-2xl p-6 relative overflow-hidden box-glow transition">
-                <p class="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-2">Available Features</p>
-                <div class="text-3xl font-heading font-bold text-gold gold-glow">
-                    50+ CMDS
+                <div class="mt-10 pt-6 border-t border-white/5 text-gray-500 text-sm">
+                    Sincerely,<br>
+                    <span class="text-gold font-semibold tracking-wide">Development Team of Oxelate &lt;/&gt;</span>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- 4. WHY CHOOSE SECTION -->
-    <section class="max-w-6xl mx-auto px-4 py-20">
-        <div class="text-center mb-16">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold/10 border border-gold/20 text-gold text-xs font-semibold uppercase tracking-wider mb-3">
-                Premium Features
-            </div>
-            <h2 class="font-heading font-bold text-3xl sm:text-4xl uppercase">Why Choose Oxelate</h2>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="bg-cardBg border border-white/5 p-8 rounded-2xl box-glow transition">
-                <div class="w-10 h-10 bg-gold/10 rounded-xl flex items-center justify-center text-gold border border-gold/20 mb-6">🛡️</div>
-                <h3 class="font-heading font-bold text-xl uppercase mb-3 text-gold">Next-Gen Antinuke</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">Monitor audit logs in real-time with millisecond precision. Block rogue admins, auto-restore channels, and stop server destruction instantly before it even begins.</p>
-            </div>
-            <div class="bg-cardBg border border-white/5 p-8 rounded-2xl box-glow transition">
-                <div class="w-10 h-10 bg-gold/10 rounded-xl flex items-center justify-center text-gold border border-gold/20 mb-6">🚪</div>
-                <h3 class="font-heading font-bold text-xl uppercase mb-3 text-gold">Bulletproof AntiRaid</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">Keep mass joins, malicious bot accounts, and automated script attacks out of your server. Custom age-filters and rapid detection keep your member list completely clean.</p>
-            </div>
-            <div class="bg-cardBg border border-white/5 p-8 rounded-2xl box-glow transition">
-                <div class="w-10 h-10 bg-gold/10 rounded-xl flex items-center justify-center text-gold border border-gold/20 mb-6">🤖</div>
-                <h3 class="font-heading font-bold text-xl uppercase mb-3 text-gold">Advanced Automod Escalation</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">Go beyond simple word blocks. Our strike-based escalation handles spam, links, custom word-filters, and explicit images with zero human effort required.</p>
-            </div>
-            <div class="bg-cardBg border border-white/5 p-8 rounded-2xl box-glow transition">
-                <div class="w-10 h-10 bg-gold/10 rounded-xl flex items-center justify-center text-gold border border-gold/20 mb-6">👑</div>
-                <h3 class="font-heading font-bold text-xl uppercase mb-3 text-gold">Elite Multi-Owner Architecture</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">True decentralization for server owners. Assign secondary trusted administrators with distinct security permissions without compromising full ownership control.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. COMMUNITY SHOWCASE (HEAVILY BLURRED) -->
-    <section class="max-w-6xl mx-auto px-4 py-16 relative">
-        <div class="text-center mb-10">
-            <h2 class="font-heading font-bold text-2xl uppercase tracking-wider text-gray-500">Loved By Communities</h2>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 blur-xl opacity-20 select-none pointer-events-none">
-            <div class="bg-cardBg border border-white/5 p-6 rounded-2xl">
-                <div class="w-12 h-12 bg-gray-700 rounded-full mb-4"></div>
-                <div class="h-4 bg-gray-700 w-3/4 rounded mb-2"></div>
-                <div class="h-3 bg-gray-800 w-full rounded"></div>
-            </div>
-            <div class="bg-cardBg border border-white/5 p-6 rounded-2xl">
-                <div class="w-12 h-12 bg-gray-700 rounded-full mb-4"></div>
-                <div class="h-4 bg-gray-700 w-3/4 rounded mb-2"></div>
-                <div class="h-3 bg-gray-800 w-full rounded"></div>
-            </div>
-            <div class="bg-cardBg border border-white/5 p-6 rounded-2xl">
-                <div class="w-12 h-12 bg-gray-700 rounded-full mb-4"></div>
-                <div class="h-4 bg-gray-700 w-3/4 rounded mb-2"></div>
-                <div class="h-3 bg-gray-800 w-full rounded"></div>
-            </div>
-            <div class="bg-cardBg border border-white/5 p-6 rounded-2xl">
-                <div class="w-12 h-12 bg-gray-700 rounded-full mb-4"></div>
-                <div class="h-4 bg-gray-700 w-3/4 rounded mb-2"></div>
-                <div class="h-3 bg-gray-800 w-full rounded"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 6. FINAL CTA SECTION -->
-    <section class="max-w-4xl mx-auto px-4 py-16">
-        <div class="bg-[#14141C] border border-gold/20 rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden box-glow transition">
-            <h2 class="font-heading font-bold text-2xl sm:text-4xl uppercase mb-4">Ready to Upgrade Your Server's Defense?</h2>
-            <p class="text-gray-400 text-sm sm:text-base max-w-xl mx-auto mb-8">Deploy the ultimate hybrid security bot today. Setup takes less than two minutes.</p>
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="https://discord.com/oauth2/authorize?client_id=1366032618788880467" target="_blank" class="w-full sm:w-auto px-8 py-4 bg-gold text-black font-bold rounded-xl text-xs uppercase tracking-wider hover:bg-gold-glow transition">Add To Discord</a>
-                <a href="https://discord.gg/2xuxDxzXKh" target="_blank" class="w-full sm:w-auto px-8 py-4 bg-transparent border border-white/10 hover:border-gold/40 font-bold rounded-xl text-xs uppercase tracking-wider transition">Join Support Server</a>
-            </div>
-        </div>
-    </section>
+    </main>
 
     <!-- 7. FOOTER -->
     <footer class="border-t border-white/5 bg-[#08080C] mt-20">
@@ -231,7 +273,7 @@
             <div>
                 <h4 class="font-bold uppercase text-xs text-gray-400 tracking-wider mb-4">Quick Links</h4>
                 <div class="flex flex-col gap-2 text-gray-500 text-xs">
-                    <a href="#" class="hover:text-gold transition">Home</a>
+                    <button onclick="switchTab('home')" class="text-left hover:text-gold transition">Home</button>
                     <a href="https://discord.com/oauth2/authorize?client_id=1366032618788880467" target="_blank" class="hover:text-gold transition">Invite Bot</a>
                     <a href="https://discord.gg/2xuxDxzXKh" target="_blank" class="hover:text-gold transition">Support</a>
                 </div>
@@ -267,7 +309,6 @@
             
             <div class="space-y-6 text-sm text-gray-300 leading-relaxed">
                 <p>Your privacy is highly valued. This Privacy Policy outlines what data Oxelate processes, stores, and your rights regarding that data.</p>
-                
                 <div>
                     <h3 class="font-bold text-gold uppercase text-xs tracking-wider mb-2">1. DATA WE COLLECT</h3>
                     <p class="mb-2">To provide high-tier security, Anti-Nuke, and Auto-Mod functionalities, the Bot processes and stores the following data:</p>
@@ -277,7 +318,6 @@
                         <li>Action Logs: Temporary moderation logs, message counts, and action histories to detect and prevent unauthorized server modifications (nuking/raiding).</li>
                     </ul>
                 </div>
-
                 <div>
                     <h3 class="font-bold text-gold uppercase text-xs tracking-wider mb-2">2. HOW WE USE THE DATA</h3>
                     <p class="mb-2">The collected data is strictly used for the execution of the Bot's core security features:</p>
@@ -287,7 +327,6 @@
                         <li>Verifying whitelisted users and handling support requests.</li>
                     </ul>
                 </div>
-
                 <div>
                     <h3 class="font-bold text-gold uppercase text-xs tracking-wider mb-2">3. DATA RETENTION & SECURITY</h3>
                     <ul class="list-disc pl-5 space-y-1 text-xs text-gray-400">
@@ -295,7 +334,6 @@
                         <li>Data is retained only as long as necessary to serve the functionality of the Bot or until the Bot is removed from the server.</li>
                     </ul>
                 </div>
-
                 <div>
                     <h3 class="font-bold text-gold uppercase text-xs tracking-wider mb-2">4. DATA DELETION REQUESTS</h3>
                     <p class="mb-2">If you wish to wipe all data related to your server or user ID from our database, you can:</p>
@@ -304,7 +342,6 @@
                         <li>Open a support ticket in the official Oxelate Headquarter server to request an immediate manual data wipe from our logs.</li>
                     </ul>
                 </div>
-
                 <div>
                     <h3 class="font-bold text-gold uppercase text-xs tracking-wider mb-2">5. THIRD-PARTY DISCLOSURE</h3>
                     <p>We do not sell, trade, share, or transfer your data to any third-party individuals or external services. All data stays strictly within the secure Oxelate ecosystem.</p>
@@ -322,7 +359,6 @@
             
             <div class="space-y-6 text-sm text-gray-300 leading-relaxed">
                 <p>By adding Oxelate (hereinafter referred to as "the Bot") to your Discord server or using its features, you agree to comply with and be bound by these Terms of Service. If you do not agree, you must remove the Bot immediately.</p>
-                
                 <div>
                     <h3 class="font-bold text-gold uppercase text-xs tracking-wider mb-2">1. ACCEPTABLE USE</h3>
                     <p class="mb-2">You agree to use the Bot only for lawful purposes and in compliance with the official Discord Terms of Service and Developer Policy. You shall not:</p>
@@ -332,7 +368,6 @@
                         <li>Bypass or attempt to bypass any automated security or configuration limits.</li>
                     </ul>
                 </div>
-
                 <div>
                     <h3 class="font-bold text-gold uppercase text-xs tracking-wider mb-2">2. LIMITATION OF LIABILITY</h3>
                     <p class="mb-2">The Bot is provided on an "AS IS" and "AS AVAILABLE" basis. The developers and owners of Oxelate shall not be held liable for any damages, including but not limited to:</p>
@@ -342,12 +377,10 @@
                         <li>Server bans, kicks, or channel deletions resulting from unauthorized access or compromised staff accounts.</li>
                     </ul>
                 </div>
-
                 <div>
                     <h3 class="font-bold text-gold uppercase text-xs tracking-wider mb-2">3. TERMINATION OF ACCESS</h3>
                     <p>We reserve the right to terminate, restrict, or blacklist your access to the Bot, your server's access, or specific user access at any time, without prior notice, for violating these terms or engaging in malicious behavior against the Oxelate ecosystem.</p>
                 </div>
-
                 <div>
                     <h3 class="font-bold text-gold uppercase text-xs tracking-wider mb-2">4. AMENDMENTS</h3>
                     <p>These terms may be modified at any time. Continued usage of the Bot after changes are posted constitutes your absolute acceptance of the revised Terms of Service.</p>
@@ -356,8 +389,37 @@
         </div>
     </div>
 
-    <!-- JAVASCRIPT FOR MODAL TOGGLE -->
+    <!-- ================= EMBEDDED JAVASCRIPT ENGINE ================= -->
     <script>
+        // 1. DYNAMIC TABS ENGINE CONTROLLER
+        function switchTab(tabId) {
+            // Hide all structural sections
+            const sections = document.querySelectorAll('.tab-section');
+            sections.forEach(sec => sec.classList.remove('active-section'));
+            
+            // Remove active text layout from all navbar elements
+            const buttons = ['home', 'features', 'status'];
+            buttons.forEach(btn => {
+                const el = document.getElementById(`btn-${btn}`);
+                if (el) el.classList.remove('text-gold', 'text-white');
+                if (el) el.classList.add('text-gray-400');
+            });
+
+            // Active targeting execution
+            const targetSection = document.getElementById(`section-${tabId}`);
+            if (targetSection) targetSection.classList.add('active-section');
+
+            const targetBtn = document.getElementById(`btn-${tabId}`);
+            if (targetBtn) {
+                targetBtn.classList.remove('text-gray-400');
+                targetBtn.classList.add('text-white', 'text-gold');
+            }
+            
+            // Scroll to top instantly on viewport adjustment
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 2. MODAL CONTROLS SYSTEM
         function openModal(id) {
             document.getElementById(id).classList.remove('hidden');
             document.body.style.overflow = 'hidden';
