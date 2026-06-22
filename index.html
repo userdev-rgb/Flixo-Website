@@ -3,122 +3,349 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FLIXO | Official</title>
+    <title>Oxelate | The Golden Standard of Discord Security</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            DEFAULT: '#D4AF37',
+                            glow: '#FFDF00',
+                            dark: '#AA8513',
+                            bgAlpha: 'rgba(212, 175, 55, 0.05)'
+                        },
+                        darkBg: '#0B0B0F',
+                        cardBg: '#121218'
+                    },
+                    fontFamily: {
+                        heading: ['Space Grotesk', 'sans-serif'],
+                        body: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Premium Fonts Import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
     <style>
-        .liquid-glass {
-            background: rgba(10, 10, 10, 0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(234, 179, 8, 0.15);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
-        }
-        .text-gradient {
-            background: linear-gradient(135deg, #fef08a 0%, #eab308 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .premium-hover {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .premium-hover:hover {
-            transform: translateY(-8px) scale(1.02);
-            border-color: rgba(234, 179, 8, 0.5);
-            box-shadow: 0 20px 40px rgba(234, 179, 8, 0.15);
-        }
+        .gold-glow { text-shadow: 0 0 20px rgba(212, 175, 55, 0.5); }
+        .box-glow { box-shadow: 0 0 30px rgba(212, 175, 55, 0.05); }
+        .box-glow:hover { box-shadow: 0 0 30px rgba(212, 175, 55, 0.2); }
     </style>
 </head>
-<body class="bg-[#050505] text-neutral-300 font-sans selection:bg-yellow-500 selection:text-black">
+<body class="bg-darkBg text-white font-body selection:bg-gold selection:text-black overflow-x-hidden">
 
-    <nav class="max-w-6xl mx-auto mt-6 mx-4 px-6 py-4 flex justify-between items-center liquid-glass rounded-2xl sticky top-4 z-50">
-        <div class="text-2xl font-black text-gradient">FLIXO.</div>
-        <div class="flex gap-6 text-[10px] uppercase tracking-widest font-bold">
-            <a href="#" class="hover:text-yellow-500 transition-colors">Privacy</a>
-            <a href="#" class="hover:text-yellow-500 transition-colors">Terms</a>
-        </div>
-    </nav>
-
-    <section class="max-w-5xl mx-auto text-center pt-24 pb-16 px-4">
-        <h1 class="text-6xl md:text-8xl font-black mb-6 text-neutral-100 leading-none">Pure Sound.<br><span class="text-gradient">Zero Distortion.</span></h1>
-        <p class="max-w-2xl mx-auto text-neutral-500 mb-10 text-lg">Ditch lagging public bots. Flixo runs high-spec private audio lines optimized for ultra-crisp, lossless processing.</p>
-        
-        <div class="flex flex-col sm:flex-row justify-center gap-5">
-            <a href="https://discord.com/oauth2/authorize?client_id=1366032618788880467" class="bg-yellow-500 text-black font-black px-10 py-4 rounded-xl hover:shadow-[0_0_30px_rgba(234,179,8,0.4)] transition-all">Add To Discord</a>
-            <a href="https://discord.gg/nXZZGzuTNk" class="bg-neutral-900 border border-neutral-800 px-10 py-4 rounded-xl font-bold hover:bg-neutral-800 transition-all">Join Community</a>
-        </div>
-    </section>
-
-    <section class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
-        <div class="liquid-glass p-8 rounded-3xl text-center">
-            <div class="text-4xl font-black text-yellow-500 mb-1">4</div>
-            <div class="text-[10px] uppercase tracking-widest text-neutral-600 font-bold">Active Guilds</div>
-        </div>
-        <div class="liquid-glass p-8 rounded-3xl text-center border-y-yellow-500/20">
-            <div class="text-4xl font-black text-yellow-500 mb-1">200+</div>
-            <div class="text-[10px] uppercase tracking-widest text-neutral-600 font-bold">Global Listeners</div>
-        </div>
-        <div class="liquid-glass p-8 rounded-3xl text-center">
-            <div class="text-4xl font-black text-yellow-500 mb-1">99.99%</div>
-            <div class="text-[10px] uppercase tracking-widest text-neutral-600 font-bold">Node Uptime</div>
-        </div>
-    </section>
-
-    <section class="max-w-4xl mx-auto px-4 mb-32">
-        <div class="liquid-glass p-8 rounded-[40px] flex flex-col md:flex-row items-center gap-10">
-            <div class="w-48 h-48 bg-gradient-to-br from-yellow-500 to-amber-900 rounded-3xl shadow-2xl flex items-center justify-center">
-                <svg class="w-20 h-20 text-black/50" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+    <!-- 1. NAVBAR -->
+    <header class="w-full max-w-6xl mx-auto px-4 pt-6">
+        <nav class="bg-[#14141C]/80 backdrop-blur-md border border-white/5 rounded-full px-6 py-3 flex items-center justify-between shadow-lg">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-gold flex items-center justify-center font-heading text-black font-bold text-sm shadow-[0_0_10px_rgba(212, 175, 55, 0.4)]">O</div>
+                <span class="font-heading font-bold tracking-wide text-lg">OXELATE</span>
             </div>
-            <div class="flex-1 w-full text-center md:text-left">
-                <span class="bg-yellow-500/10 text-yellow-500 text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-tighter">Live Render</span>
-                <h3 class="text-3xl font-black mt-4 text-neutral-100">Playing Nature beauty</h3>
-                <p class="text-neutral-500 mb-8">Flixo Audio Player Session</p>
-                <div class="w-full h-1.5 bg-neutral-800 rounded-full mb-2">
-                    <div class="w-[42%] h-full bg-yellow-500 rounded-full shadow-[0_0_10px_#eab308]"></div>
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
+                <a href="#" class="text-white hover:text-gold transition">Home</a>
+                <a href="#" class="hover:text-gold transition">Features</a>
+                <a href="#" class="hover:text-gold transition">Status</a>
+                <a href="#" onclick="openModal('tos-modal')" class="hover:text-gold transition">Terms</a>
+                <a href="#" onclick="openModal('privacy-modal')" class="hover:text-gold transition">Privacy</a>
+            </div>
+            <div class="flex items-center gap-3">
+                <a href="https://discord.gg/2xuxDxzXKh" target="_blank" class="px-5 py-2 rounded-full text-xs font-semibold bg-white/5 border border-white/10 hover:bg-white/10 transition">Support</a>
+                <a href="https://discord.com/oauth2/authorize?client_id=1366032618788880467" target="_blank" class="px-5 py-2 rounded-full text-xs font-semibold bg-gold text-black hover:bg-gold-glow transition shadow-[0_0_15px_rgba(212, 175, 55, 0.2)]">Invite</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 2. HERO SECTION -->
+    <section class="max-w-5xl mx-auto px-4 pt-24 pb-16 text-center relative">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold/10 border border-gold/20 text-gold text-xs font-semibold tracking-wider uppercase mb-6">
+            🛡️ Next-Generation Protection
+        </div>
+        <h1 class="font-heading font-bold text-4xl sm:text-6xl uppercase tracking-tight max-w-3xl mx-auto leading-tight mb-6">
+            The <span class="text-gold gold-glow">Golden Standard</span> <br>Of Discord Security.
+        </h1>
+        <p class="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+            Protect, automate, and elevate your community with ultra-high-speed security protocols designed for high-tier servers. Complete immune network against threats.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="https://discord.com/oauth2/authorize?client_id=1366032618788880467" target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold bg-gold text-black hover:bg-gold-glow transition shadow-[0_0_25px_rgba(212,175,55,0.3)] text-sm uppercase tracking-wider">Add To Discord</a>
+            <a href="https://discord.gg/2xuxDxzXKh" target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold bg-[#14141C] border border-white/10 hover:border-gold/40 transition text-sm uppercase tracking-wider">Join Support Server</a>
+        </div>
+        <div class="flex items-center justify-center gap-6 mt-12 text-xs text-gray-500 font-medium">
+            <span class="flex items-center gap-1.5">🟢 99.9% Uptime</span>
+            <span class="flex items-center gap-1.5">⚡ Secure</span>
+            <span class="flex items-center gap-1.5">💎 Premium UI</span>
+        </div>
+    </section>
+
+    <!-- 3. STATS SECTION (SERVER & USERS BLURRED) -->
+    <section class="max-w-6xl mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <!-- Active Servers Card (BLURRED) -->
+            <div class="bg-cardBg border border-white/5 rounded-2xl p-6 relative overflow-hidden box-glow transition">
+                <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-2">Active Servers</p>
+                <div class="text-3xl font-heading font-bold text-gold blur-md select-none pointer-events-none">
+                    88,888+
                 </div>
-                <div class="flex justify-between text-[10px] font-bold text-neutral-600"><span>01:42</span><span>04:05</span></div>
+            </div>
+            <!-- Uptime Card (VISIBLE) -->
+            <div class="bg-cardBg border border-gold/20 rounded-2xl p-6 relative overflow-hidden box-glow transition">
+                <p class="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-2">Bot Uptime</p>
+                <div class="text-3xl font-heading font-bold text-gold gold-glow">
+                    99.9%
+                </div>
+            </div>
+            <!-- Total Users Card (BLURRED) -->
+            <div class="bg-cardBg border border-white/5 rounded-2xl p-6 relative overflow-hidden box-glow transition">
+                <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-2">Members Protected</p>
+                <div class="text-3xl font-heading font-bold text-gold blur-md select-none pointer-events-none">
+                    9,999,999+
+                </div>
+            </div>
+            <!-- Commands Card (VISIBLE) -->
+            <div class="bg-cardBg border border-gold/20 rounded-2xl p-6 relative overflow-hidden box-glow transition">
+                <p class="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-2">Available Features</p>
+                <div class="text-3xl font-heading font-bold text-gold gold-glow">
+                    50+ CMDS
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- 4. WHY CHOOSE SECTION -->
     <section class="max-w-6xl mx-auto px-4 py-20">
-        <h2 class="text-center text-3xl font-black mb-16 text-gradient">Community Feedback</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="liquid-glass p-8 rounded-3xl premium-hover">
-                <div class="text-yellow-500 text-sm mb-4">★★★★★ <span class="text-neutral-500 ml-2">4.9/5</span></div>
-                <p class="text-sm italic text-neutral-400">"The audio quality is unmatched. I've tried every bot out there, but Flixo's private nodes actually deliver what they promise. No more lag in voice channels."</p>
-                <h4 class="mt-6 font-bold text-xs text-neutral-100">— Shadow_Owner</h4>
+        <div class="text-center mb-16">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold/10 border border-gold/20 text-gold text-xs font-semibold uppercase tracking-wider mb-3">
+                Premium Features
             </div>
-            <div class="liquid-glass p-8 rounded-3xl premium-hover">
-                <div class="text-yellow-500 text-sm mb-4">★★★★★ <span class="text-neutral-500 ml-2">4.8/5</span></div>
-                <p class="text-sm italic text-neutral-400">"Setting up Flixo was the best decision for my community. The nightcore filters are clean and don't distort the bass. Definitely a premium experience."</p>
-                <h4 class="mt-6 font-bold text-xs text-neutral-100">— Rey_Labs</h4>
+            <h2 class="font-heading font-bold text-3xl sm:text-4xl uppercase">Why Choose Oxelate</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Card 1 -->
+            <div class="bg-cardBg border border-white/5 p-8 rounded-2xl box-glow transition">
+                <div class="w-10 h-10 bg-gold/10 rounded-xl flex items-center justify-center text-gold border border-gold/20 mb-6">🛡️</div>
+                <h3 class="font-heading font-bold text-xl uppercase mb-3 text-gold">Next-Gen Antinuke</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Monitor audit logs in real-time with millisecond precision. Block rogue admins, auto-restore channels, and stop server destruction instantly before it even begins.</p>
             </div>
-            <div class="liquid-glass p-8 rounded-3xl premium-hover">
-                <div class="text-yellow-500 text-sm mb-4">★★★★★ <span class="text-neutral-500 ml-2">4.7/5</span></div>
-                <p class="text-sm italic text-neutral-400">"Finally a bot that doesn't feel like a template. The UI/UX on the website and the response speed of the commands is blazing fast. Highly recommend it."</p>
-                <h4 class="mt-6 font-bold text-xs text-neutral-100">— Ghost_Mod</h4>
+            <!-- Card 2 -->
+            <div class="bg-cardBg border border-white/5 p-8 rounded-2xl box-glow transition">
+                <div class="w-10 h-10 bg-gold/10 rounded-xl flex items-center justify-center text-gold border border-gold/20 mb-6">🚪</div>
+                <h3 class="font-heading font-bold text-xl uppercase mb-3 text-gold">Bulletproof AntiRaid</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Keep mass joins, malicious bot accounts, and automated script attacks out of your server. Custom age-filters and rapid detection keep your member list completely clean.</p>
             </div>
-            <div class="liquid-glass p-8 rounded-3xl premium-hover">
-                <div class="text-yellow-500 text-sm mb-4">★★★★★ <span class="text-neutral-500 ml-2">4.9/5</span></div>
-                <p class="text-sm italic text-neutral-400">"Zero latency is not just a marketing gimmick here. Even with 100+ listeners in the VC, the audio remains crystal clear without a single skip."</p>
-                <h4 class="mt-6 font-bold text-xs text-neutral-100">— Bloom_Vibes</h4>
+            <!-- Card 3 -->
+            <div class="bg-cardBg border border-white/5 p-8 rounded-2xl box-glow transition">
+                <div class="w-10 h-10 bg-gold/10 rounded-xl flex items-center justify-center text-gold border border-gold/20 mb-6">🤖</div>
+                <h3 class="font-heading font-bold text-xl uppercase mb-3 text-gold">Advanced Automod Escalation</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Go beyond simple word blocks. Our strike-based escalation handles spam, links, custom word-filters, and explicit images with zero human effort required.</p>
             </div>
-            <div class="liquid-glass p-8 rounded-3xl premium-hover">
-                <div class="text-yellow-500 text-sm mb-4">★★★★★ <span class="text-neutral-500 ml-2">4.8/5</span></div>
-                <p class="text-sm italic text-neutral-400">"I love the Nature Beauty mode. It sounds so immersive with the high-end Lavalink nodes. This bot is on another level compared to the public ones."</p>
-                <h4 class="mt-6 font-bold text-xs text-neutral-100">— Nexus_Admin</h4>
-            </div>
-            <div class="liquid-glass p-8 rounded-3xl premium-hover">
-                <div class="text-yellow-500 text-sm mb-4">★★★★★ <span class="text-neutral-500 ml-2">4.7/5</span></div>
-                <p class="text-sm italic text-neutral-400">"Support team is helpful and the bot stays online 24/7. Never had a single downtime issue since we added it to our main guild. Solid performance."</p>
-                <h4 class="mt-6 font-bold text-xs text-neutral-100">— Void_User</h4>
+            <!-- Card 4 -->
+            <div class="bg-cardBg border border-white/5 p-8 rounded-2xl box-glow transition">
+                <div class="w-10 h-10 bg-gold/10 rounded-xl flex items-center justify-center text-gold border border-gold/20 mb-6">👑</div>
+                <h3 class="font-heading font-bold text-xl uppercase mb-3 text-gold">Elite Multi-Owner Architecture</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">True decentralization for server owners. Assign secondary trusted administrators with distinct security permissions without compromising full ownership control.</p>
             </div>
         </div>
     </section>
 
-    <footer class="py-12 text-center border-t border-neutral-900 mt-20">
-        <p class="text-[11px] text-neutral-600 tracking-[0.3em] font-bold">Made with ♥ by Flixo Development &lt;/&gt;</p>
+    <!-- 5. COMMUNITY SHOWCASE (HEAVILY BLURRED) -->
+    <section class="max-w-6xl mx-auto px-4 py-16 relative">
+        <div class="text-center mb-10">
+            <h2 class="font-heading font-bold text-2xl uppercase tracking-wider text-gray-500">Loved By Communities</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 blur-xl opacity-20 select-none pointer-events-none">
+            <div class="bg-cardBg border border-white/5 p-6 rounded-2xl">
+                <div class="w-12 h-12 bg-gray-700 rounded-full mb-4"></div>
+                <div class="h-4 bg-gray-700 w-3/4 rounded mb-2"></div>
+                <div class="h-3 bg-gray-800 w-full rounded"></div>
+            </div>
+            <div class="bg-cardBg border border-white/5 p-6 rounded-2xl">
+                <div class="w-12 h-12 bg-gray-700 rounded-full mb-4"></div>
+                <div class="h-4 bg-gray-700 w-3/4 rounded mb-2"></div>
+                <div class="h-3 bg-gray-800 w-full rounded"></div>
+            </div>
+            <div class="bg-cardBg border border-white/5 p-6 rounded-2xl">
+                <div class="w-12 h-12 bg-gray-700 rounded-full mb-4"></div>
+                <div class="h-4 bg-gray-700 w-3/4 rounded mb-2"></div>
+                <div class="h-3 bg-gray-800 w-full rounded"></div>
+            </div>
+            <div class="bg-cardBg border border-white/5 p-6 rounded-2xl">
+                <div class="w-12 h-12 bg-gray-700 rounded-full mb-4"></div>
+                <div class="h-4 bg-gray-700 w-3/4 rounded mb-2"></div>
+                <div class="h-3 bg-gray-800 w-full rounded"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. FINAL CTA SECTION -->
+    <section class="max-w-4xl mx-auto px-4 py-16">
+        <div class="bg-[#14141C] border border-gold/20 rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden box-glow transition">
+            <h2 class="font-heading font-bold text-2xl sm:text-4xl uppercase mb-4">Ready to Upgrade Your Server's Defense?</h2>
+            <p class="text-gray-400 text-sm sm:text-base max-w-xl mx-auto mb-8">Deploy the ultimate hybrid security bot today. Setup takes less than two minutes.</p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="https://discord.com/oauth2/authorize?client_id=1366032618788880467" target="_blank" class="w-full sm:w-auto px-8 py-4 bg-gold text-black font-bold rounded-xl text-xs uppercase tracking-wider hover:bg-gold-glow transition">Add To Discord</a>
+                <a href="https://discord.gg/2xuxDxzXKh" target="_blank" class="w-full sm:w-auto px-8 py-4 bg-transparent border border-white/10 hover:border-gold/40 font-bold rounded-xl text-xs uppercase tracking-wider transition">Join Support Server</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. FOOTER -->
+    <footer class="border-t border-white/5 bg-[#08080C] mt-20">
+        <div class="max-w-6xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-4 gap-8 text-sm">
+            <div>
+                <span class="font-heading font-bold tracking-wide text-lg text-gold">OXELATE</span>
+                <p class="text-gray-500 mt-3 text-xs leading-relaxed">The only automated network solution for modern Discord defense and clean administration.</p>
+            </div>
+            <div>
+                <h4 class="font-bold uppercase text-xs text-gray-400 tracking-wider mb-4">Quick Links</h4>
+                <div class="flex flex-col gap-2 text-gray-500 text-xs">
+                    <a href="#" class="hover:text-gold transition">Home</a>
+                    <a href="https://discord.com/oauth2/authorize?client_id=1366032618788880467" target="_blank" class="hover:text-gold transition">Invite Bot</a>
+                    <a href="https://discord.gg/2xuxDxzXKh" target="_blank" class="hover:text-gold transition">Support</a>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-bold uppercase text-xs text-gray-400 tracking-wider mb-4">Legal Policy</h4>
+                <div class="flex flex-col gap-2 text-gray-500 text-xs">
+                    <button onclick="openModal('tos-modal')" class="text-left hover:text-gold transition">Terms of Service</button>
+                    <button onclick="openModal('privacy-modal')" class="text-left hover:text-gold transition">Privacy Policy</button>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-bold uppercase text-xs text-gray-400 tracking-wider mb-4">Development</h4>
+                <p class="text-xs text-gray-500">Developed With ♥ by <span class="text-gold font-semibold">Aisenzofor.sure</span></p>
+            </div>
+        </div>
+        <div class="max-w-6xl mx-auto px-4 py-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-600 gap-4">
+            <p>&copy; 2026 Oxelate Security. All rights reserved.</p>
+            <div class="text-gray-500 text-xs">
+                Developed With ♥ by Aisenzofor.sure
+            </div>
+        </div>
     </footer>
+
+    <!-- ================= MODALS COMPONENT ================= -->
+
+    <!-- PRIVACY POLICY MODAL -->
+    <div id="privacy-modal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="bg-[#121218] border border-gold/30 rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto p-6 sm:p-8 box-glow relative">
+            <button onclick="closeModal('privacy-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-gold text-xl font-bold">&times;</button>
+            <h2 class="font-heading font-bold text-xl sm:text-2xl text-gold uppercase mb-2">OXELATE SECURITY BOT - PRIVACY POLICY</h2>
+            <p class="text-xs text-gray-500 italic mb-6">Last Updated: June 2026</p>
+            
+            <div class="space-y-6 text-sm text-gray-300 leading-relaxed">
+                <p>Your privacy is highly valued. This Privacy Policy outlines what data Oxelate processes, stores, and your rights regarding that data.</p>
+                
+                <div>
+                    <h3 class="font-bold text-gold uppercase text-xs tracking-wider mb-2">1. DATA WE COLLECT</h3>
+                    <p class="mb-2">To provide high-tier security, Anti-Nuke, and Auto-Mod functionalities, the Bot processes and stores the following data:</p>
+                    <ul class="list-disc pl-5 space-y-1 text-xs text-gray-400">
+                        <li>Guild/Server Identifiers: Server IDs, Channel IDs, Role IDs, and custom configuration settings.</li>
+                        <li>User Identifiers: Discord User IDs of server members, administrators, and whitelisted users.</li>
+                        <li>Action Logs: Temporary moderation logs, message counts, and action histories to detect and prevent unauthorized server modifications (nuking/raiding).</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-gold uppercase text-xs tracking-wider mb-2">2. HOW WE USE THE DATA</h3>
+                    <p class="mb-2">The collected data is strictly used for the execution of the Bot's core security features:</p>
+                    <ul class="list-disc pl-5 space-y-1 text-xs text-gray-400">
+                        <li>Enforcing Anti-Nuke limits and identifying unauthorized actions.</li>
+                        <li>Executing Auto-Mod protocols and maintaining custom server configurations.</li>
+                        <li>Verifying whitelisted users and handling support requests.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-gold uppercase text-xs tracking-wider mb-2">3. DATA RETENTION & SECURITY</h3>
+                    <ul class="list-disc pl-5 space-y-1 text-xs text-gray-400">
+                        <li>All configurations and logs are stored securely using encrypted cloud databases (MongoDB Atlas).</li>
+                        <li>Data is retained only as long as necessary to serve the functionality of the Bot or until the Bot is removed from the server.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-gold uppercase text-xs tracking-wider mb-2">4. DATA DELETION REQUESTS</h3>
+                    <p class="mb-2">If you wish to wipe all data related to your server or user ID from our database, you can:</p>
+                    <ul class="list-disc pl-5 space-y-1 text-xs text-gray-400">
+                        <li>Remove (kick) the Bot from your server, which will automatically mark the server configuration data for deletion.</li>
+                        <li>Open a support ticket in the official Oxelate Headquarter server to request an immediate manual data wipe from our logs.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-gold uppercase text-xs tracking-wider mb-2">5. THIRD-PARTY DISCLOSURE</h3>
+                    <p>We do not sell, trade, share, or transfer your data to any third-party individuals or external services. All data stays strictly within the secure Oxelate ecosystem.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TERMS OF SERVICE MODAL -->
+    <div id="tos-modal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="bg-[#121218] border border-gold/30 rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto p-6 sm:p-8 box-glow relative">
+            <button onclick="closeModal('tos-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-gold text-xl font-bold">&times;</button>
+            <h2 class="font-heading font-bold text-xl sm:text-2xl text-gold uppercase mb-2">OXELATE SECURITY BOT - TERMS OF SERVICE</h2>
+            <p class="text-xs text-gray-500 italic mb-6">Last Updated: June 2026</p>
+            
+            <div class="space-y-6 text-sm text-gray-300 leading-relaxed">
+                <p>By adding Oxelate (hereinafter referred to as "the Bot") to your Discord server or using its features, you agree to comply with and be bound by these Terms of Service. If you do not agree, you must remove the Bot immediately.</p>
+                
+                <div>
+                    <h3 class="font-bold text-gold uppercase text-xs tracking-wider mb-2">1. ACCEPTABLE USE</h3>
+                    <p class="mb-2">You agree to use the Bot only for lawful purposes and in compliance with the official Discord Terms of Service and Developer Policy. You shall not:</p>
+                    <ul class="list-disc pl-5 space-y-1 text-xs text-gray-400">
+                        <li>Attempt to exploit, reverse-engineer, or disrupt the Bot's infrastructure.</li>
+                        <li>Use the Bot to facilitate raids, nuking, or malicious attacks on other servers.</li>
+                        <li>Bypass or attempt to bypass any automated security or configuration limits.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-gold uppercase text-xs tracking-wider mb-2">2. LIMITATION OF LIABILITY</h3>
+                    <p class="mb-2">The Bot is provided on an "AS IS" and "AS AVAILABLE" basis. The developers and owners of Oxelate shall not be held liable for any damages, including but not limited to:</p>
+                    <ul class="list-disc pl-5 space-y-1 text-xs text-gray-400">
+                        <li>Data loss or corruption within your server.</li>
+                        <li>Server modifications made due to misconfiguration of Anti-Nuke, Auto-Mod, or recovery modules.</li>
+                        <li>Server bans, kicks, or channel deletions resulting from unauthorized access or compromised staff accounts.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-gold uppercase text-xs tracking-wider mb-2">3. TERMINATION OF ACCESS</h3>
+                    <p>We reserve the right to terminate, restrict, or blacklist your access to the Bot, your server's access, or specific user access at any time, without prior notice, for violating these terms or engaging in malicious behavior against the Oxelate ecosystem.</p>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-gold uppercase text-xs tracking-wider mb-2">4. AMENDMENTS</h3>
+                    <p>These terms may be modified at any time. Continued usage of the Bot after changes are posted constitutes your absolute acceptance of the revised Terms of Service.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT FOR MODAL TOGGLE -->
+    <script>
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Stop background scrolling
+        }
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+        // Close modal if user clicks outside the content box
+        window.onclick = function(event) {
+            if (event.target.id === 'privacy-modal') closeModal('privacy-modal');
+            if (event.target.id === 'tos-modal') closeModal('tos-modal');
+        }
+    </script>
 
 </body>
 </html>
