@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oxelate | Fortified Guild Control</title>
     
-    <!-- Tab Logo (Favicon) -->
     <link class="rounded-full" rel="icon" type="image/png" href="logo.png">
 
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -32,15 +30,19 @@
             }
         }
     </script>
-    <!-- Premium Fonts Import -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
     
     <style>
-        .gold-glow { text-shadow: 0 0 20px rgba(212, 175, 55, 0.5); }
-        .box-glow { box-shadow: 0 0 30px rgba(212, 175, 55, 0.05); }
-        .box-glow:hover { box-shadow: 0 0 30px rgba(212, 175, 55, 0.2); }
+        .gold-glow { text-shadow: 0 0 25px rgba(212, 175, 55, 0.6); }
+        .box-glow { box-shadow: 0 0 30px rgba(212, 175, 55, 0.03); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        /* Ultra Bright Hover Upgrade */
+        .box-glow:hover { 
+            box-shadow: 0 0 35px rgba(212, 175, 55, 0.35); 
+            border-color: rgba(212, 175, 55, 0.5) !important;
+            transform: translateY(-2px);
+        }
         
         .tab-section {
             display: none;
@@ -55,7 +57,6 @@
 </head>
 <body class="bg-darkBg text-white font-body selection:bg-gold selection:text-black overflow-x-hidden">
 
-    <!-- 1. NAVBAR -->
     <header class="w-full max-w-6xl mx-auto px-4 pt-6">
         <nav class="bg-[#14141C]/80 backdrop-blur-md border border-white/5 rounded-full px-6 py-3 flex items-center justify-between shadow-lg">
             <div class="flex items-center gap-3">
@@ -82,9 +83,7 @@
 
     <main class="min-h-[70vh]">
 
-        <!-- [TAB A] HOME SECTION -->
         <div id="section-home" class="tab-section active-section">
-            <!-- HERO LAYOUT -->
             <section class="max-w-6xl mx-auto px-4 pt-20 pb-12 relative">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <div class="text-left">
@@ -108,54 +107,76 @@
                             <img src="logo.png" alt="Oxelate Brand" class="w-full h-full object-contain rounded-2xl relative z-10">
                         </div>
 
-                        <!-- LIVE SECURITY LOG SIMULATION -->
-                        <div class="w-full max-w-md bg-[#09090D] border border-white/5 rounded-xl p-4 font-mono text-[11px] text-gray-400 shadow-2xl">
-                            <div class="flex items-center justify-between border-b border-white/5 pb-2 mb-2 text-[10px] uppercase tracking-wider text-gray-500">
-                                <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-gold animate-pulse"></span> Security Engine Logs</span>
-                                <span>v1.0.0-active</span>
+                        <div class="w-full max-w-xl bg-[#07070A] border border-white/10 rounded-xl overflow-hidden shadow-2xl box-glow">
+                            <div class="bg-[#101016] px-4 py-3 flex items-center justify-between border-b border-white/5">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-3 h-3 rounded-full bg-red-500 block"></span>
+                                    <span class="w-3 h-3 rounded-full bg-yellow-500 block"></span>
+                                    <span class="w-3 h-3 rounded-full bg-green-500 block"></span>
+                                </div>
+                                <span class="text-[10px] font-mono uppercase tracking-widest text-gray-500">Core-Engine-Live-Stream</span>
+                                <span class="text-[10px] font-mono text-gold px-2 py-0.5 rounded bg-gold/10 border border-gold/20">v1.0.4</span>
                             </div>
-                            <div class="space-y-1.5">
-                                <div><span class="text-gray-600">[21:42:10]</span> <span class="text-red-400">ALERT: Mass Channel Delete triggered by rogue_staff</span></div>
-                                <div><span class="text-gray-600">[21:42:10]</span> <span class="text-gold">ACTION: AntiNuke system locked down execution queue</span></div>
-                                <div><span class="text-gray-600">[21:42:11]</span> <span class="text-green-400">SUCCESS: Attacker banned. 14 channels auto-restored (410ms)</span></div>
-                                <div><span class="text-gray-600">[21:43:00]</span> <span class="text-blue-400 animate-pulse">SYS: Monitoring active channels and roles...</span></div>
+                            <div class="p-5 font-mono text-[12px] text-gray-400 space-y-2.5 min-h-[170px] leading-relaxed">
+                                <div class="flex items-start gap-2">
+                                    <span class="text-gray-600 shrink-0">[21:42:10]</span> 
+                                    <span class="text-red-400 font-medium">⚠️ ALERT: Mass Channel Delete sequence initiated by rogue_staff_acc.</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <span class="text-gray-600 shrink-0">[21:42:10]</span> 
+                                    <span class="text-gold font-medium">⚡ ACTION: AntiNuke core intercepted API payload & locked execution queue.</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <span class="text-gray-600 shrink-0">[21:42:11]</span> 
+                                    <span class="text-green-400 font-semibold">✅ SUCCESS: Attacker stripped of roles + permanently banned. 14 channels fully auto-restored (Latency: 410ms).</span>
+                                </div>
+                                <div class="flex items-start gap-2 border-t border-white/5 pt-2 mt-2">
+                                    <span class="text-gray-600 shrink-0">[21:44:02]</span> 
+                                    <span class="text-yellow-500">🛡️ MONITOR: Unauthorized Webhook creation detected in #announcements. Instant deleted.</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <span class="text-gray-600 shrink-0">[21:45:15]</span> 
+                                    <span class="text-blue-400">🛡️ ANTI-RAID: Mitigated rapid token-join wave. 38 alt-accounts quarantined.</span>
+                                </div>
+                                <div class="flex items-start gap-2 text-gray-500 animate-pulse">
+                                    <span class="text-gray-600 shrink-0">[21:46:00]</span> 
+                                    <span>⚙️ SYSTEM: Local cache nodes synchronized. Monitoring active guilds...</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- STATS GRID -->
             <section class="max-w-6xl mx-auto px-4 py-8">
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div class="bg-cardBg border border-white/5 rounded-2xl p-6 relative overflow-hidden box-glow transition">
+                    <div class="bg-cardBg border border-white/5 rounded-2xl p-6 relative overflow-hidden box-glow">
                         <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-2">Active Servers</p>
                         <div class="text-3xl font-heading font-bold text-gold blur-sm select-none pointer-events-none">88,888+</div>
                     </div>
-                    <div class="bg-cardBg border border-gold/20 rounded-2xl p-6 relative overflow-hidden box-glow transition">
+                    <div class="bg-cardBg border border-gold/20 rounded-2xl p-6 relative overflow-hidden box-glow">
                         <p class="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-2">Engine Uptime</p>
                         <div class="text-3xl font-heading font-bold text-gold gold-glow">99.9%</div>
                     </div>
-                    <div class="bg-cardBg border border-white/5 rounded-2xl p-6 relative overflow-hidden box-glow transition">
+                    <div class="bg-cardBg border border-white/5 rounded-2xl p-6 relative overflow-hidden box-glow">
                         <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-2">Members Protected</p>
                         <div class="text-3xl font-heading font-bold text-gold blur-sm select-none pointer-events-none">9,999,999+</div>
                     </div>
-                    <div class="bg-cardBg border border-gold/20 rounded-2xl p-6 relative overflow-hidden box-glow transition">
+                    <div class="bg-cardBg border border-gold/20 rounded-2xl p-6 relative overflow-hidden box-glow">
                         <p class="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-2">Core Commands</p>
                         <div class="text-3xl font-heading font-bold text-gold gold-glow">50+ Heavy</div>
                     </div>
                 </div>
             </section>
 
-            <!-- CORE CATEGORIES -->
             <section class="max-w-6xl mx-auto px-4 py-12">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-cardBg border border-white/5 p-8 rounded-2xl box-glow transition">
+                    <div class="bg-cardBg border border-white/5 p-8 rounded-2xl box-glow">
                         <div class="w-10 h-10 bg-gold/10 rounded-xl flex items-center justify-center text-gold border border-gold/20 mb-6">🛡️</div>
                         <h3 class="font-heading font-bold text-xl uppercase mb-3 text-gold">Next-Gen Antinuke</h3>
                         <p class="text-gray-400 text-sm leading-relaxed">Monitor audit logs in real-time. Block rogue admins, auto-restore channels, and stop server destruction instantly before it even begins.</p>
                     </div>
-                    <div class="bg-cardBg border border-white/5 p-8 rounded-2xl box-glow transition">
+                    <div class="bg-cardBg border border-white/5 p-8 rounded-2xl box-glow">
                         <div class="w-10 h-10 bg-gold/10 rounded-xl flex items-center justify-center text-gold border border-gold/20 mb-6">🚪</div>
                         <h3 class="font-heading font-bold text-xl uppercase mb-3 text-gold">Bulletproof AntiRaid</h3>
                         <p class="text-gray-400 text-sm leading-relaxed">Keep mass joins, malicious bot accounts, and automated script attacks out. Custom filters keep your member list completely clean.</p>
@@ -163,50 +184,66 @@
                 </div>
             </section>
 
-            <!-- 🛠️ INTERACTIVE VULNERABILITY CHECKER -->
             <section class="max-w-4xl mx-auto px-4 py-12">
-                <div class="bg-[#111116] border border-white/5 rounded-3xl p-6 sm:p-10 box-glow transition">
-                    <div class="text-center mb-8">
+                <div class="bg-[#111116] border border-white/5 rounded-3xl p-6 sm:p-10 box-glow">
+                    <div class="text-center mb-10">
                         <div class="inline-block bg-red-500/10 border border-red-500/30 text-red-400 text-[10px] font-mono uppercase tracking-widest px-3 py-1 rounded-full mb-3">
-                            Instant Risk Assessment
+                            Direct Risk Evaluation
                         </div>
-                        <h2 class="font-heading font-bold text-2xl sm:text-3xl uppercase tracking-wide">Audit Your Guild Security</h2>
-                        <p class="text-gray-500 text-xs mt-1">Answer 3 simple system architecture questions to calculate your vulnerability window.</p>
+                        <h2 class="font-heading font-bold text-2xl sm:text-3xl uppercase tracking-wide">Audit Your Server Architecture</h2>
+                        <p class="text-gray-500 text-xs mt-1">Answer these 6 mandatory operational questions honestly to evaluate your server's defense loop.</p>
                     </div>
 
-                    <div class="space-y-6 max-w-2xl mx-auto">
-                        <!-- Question 1 -->
-                        <div class="bg-cardBg border border-white/5 p-4 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                            <span class="text-xs sm:text-sm text-gray-300 font-medium">1. Does your server have more than 2 staff accounts with Administrator permissions?</span>
+                    <div class="space-y-4 max-w-3xl mx-auto">
+                        <div class="bg-cardBg border border-white/5 p-4 sm:p-5 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                            <span class="text-xs sm:text-sm text-gray-300 font-medium">1. Do you have more than 2 staff accounts with full "Administrator" permissions?</span>
                             <div class="flex gap-2 shrink-0">
-                                <button onclick="auditSelect(1, true)" id="q1-yes" class="px-4 py-1.5 rounded-lg text-xs font-bold bg-white/5 border border-white/10 hover:border-gold/40 transition">YES</button>
-                                <button onclick="auditSelect(1, false)" id="q1-no" class="px-4 py-1.5 rounded-lg text-xs font-bold bg-white/5 border border-white/10 hover:border-gold/40 transition">NO</button>
+                                <button onclick="auditSelect(1, true)" id="q1-yes" class="px-5 py-2 rounded-lg text-xs font-bold bg-white/5 border border-white/10 hover:border-gold/40 transition">YES</button>
+                                <button onclick="auditSelect(1, false)" id="q1-no" class="px-5 py-2 rounded-lg text-xs font-bold bg-white/5 border border-white/10 hover:border-gold/40 transition">NO</button>
                             </div>
                         </div>
-                        <!-- Question 2 -->
-                        <div class="bg-cardBg border border-white/5 p-4 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                            <span class="text-xs sm:text-sm text-gray-300 font-medium">2. Can your current security system detect and halt rogue admin channel-deletions in under 500ms?</span>
+                        <div class="bg-cardBg border border-white/5 p-4 sm:p-5 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                            <span class="text-xs sm:text-sm text-gray-300 font-medium">2. Can your current bot track audit logs and auto-restore deleted channels in less than 500 milliseconds?</span>
                             <div class="flex gap-2 shrink-0">
-                                <button onclick="auditSelect(2, true)" id="q2-yes" class="px-4 py-1.5 rounded-lg text-xs font-bold bg-white/5 border border-white/10 hover:border-gold/40 transition">YES</button>
-                                <button onclick="auditSelect(2, false)" id="q2-no" class="px-4 py-1.5 rounded-lg text-xs font-bold bg-white/5 border border-white/10 hover:border-gold/40 transition">NO</button>
+                                <button onclick="auditSelect(2, true)" id="q2-yes" class="px-5 py-2 rounded-lg text-xs font-bold bg-white/5 border border-white/10 hover:border-gold/40 transition">YES</button>
+                                <button onclick="auditSelect(2, false)" id="q2-no" class="px-5 py-2 rounded-lg text-xs font-bold bg-white/5 border border-white/10 hover:border-gold/40 transition">NO</button>
                             </div>
                         </div>
-                        <!-- Question 3 -->
-                        <div class="bg-cardBg border border-white/5 p-4 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                            <span class="text-xs sm:text-sm text-gray-300 font-medium">3. Do you have a decentralized backup owner protocol if the primary owner account gets compromised?</span>
+                        <div class="bg-cardBg border border-white/5 p-4 sm:p-5 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                            <span class="text-xs sm:text-sm text-gray-300 font-medium">3. If the primary owner's personal Discord account gets hacked, do you have a secondary trusted backup owner system ready?</span>
                             <div class="flex gap-2 shrink-0">
-                                <button onclick="auditSelect(3, true)" id="q3-yes" class="px-4 py-1.5 rounded-lg text-xs font-bold bg-white/5 border border-white/10 hover:border-gold/40 transition">YES</button>
-                                <button onclick="auditSelect(3, false)" id="q3-no" class="px-4 py-1.5 rounded-lg text-xs font-bold bg-white/5 border border-white/10 hover:border-gold/40 transition">NO</button>
+                                <button onclick="auditSelect(3, true)" id="q3-yes" class="px-5 py-2 rounded-lg text-xs font-bold bg-white/5 border border-white/10 hover:border-gold/40 transition">YES</button>
+                                <button onclick="auditSelect(3, false)" id="q3-no" class="px-5 py-2 rounded-lg text-xs font-bold bg-white/5 border border-white/10 hover:border-gold/40 transition">NO</button>
+                            </div>
+                        </div>
+                        <div class="bg-cardBg border border-white/5 p-4 sm:p-5 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                            <span class="text-xs sm:text-sm text-gray-300 font-medium">4. Does your server have a system that blocks malicious webhooks created instantly by rogue staff members?</span>
+                            <div class="flex gap-2 shrink-0">
+                                <button onclick="auditSelect(4, true)" id="q4-yes" class="px-5 py-2 rounded-lg text-xs font-bold bg-white/5 border border-white/10 hover:border-gold/40 transition">YES</button>
+                                <button onclick="auditSelect(4, false)" id="q4-no" class="px-5 py-2 rounded-lg text-xs font-bold bg-white/5 border border-white/10 hover:border-gold/40 transition">NO</button>
+                            </div>
+                        </div>
+                        <div class="bg-cardBg border border-white/5 p-4 sm:p-5 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                            <span class="text-xs sm:text-sm text-gray-300 font-medium">5. Is your custom Server Vanity URL protected from being immediately stolen if someone removes your level-3 boosts?</span>
+                            <div class="flex gap-2 shrink-0">
+                                <button onclick="auditSelect(5, true)" id="q5-yes" class="px-5 py-2 rounded-lg text-xs font-bold bg-white/5 border border-white/10 hover:border-gold/40 transition">YES</button>
+                                <button onclick="auditSelect(5, false)" id="q5-no" class="px-5 py-2 rounded-lg text-xs font-bold bg-white/5 border border-white/10 hover:border-gold/40 transition">NO</button>
+                            </div>
+                        </div>
+                        <div class="bg-cardBg border border-white/5 p-4 sm:p-5 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                            <span class="text-xs sm:text-sm text-gray-300 font-medium">6. Are your general moderation roles restricted from editing or moving the security bot's role hierarchy?</span>
+                            <div class="flex gap-2 shrink-0">
+                                <button onclick="auditSelect(6, true)" id="q6-yes" class="px-5 py-2 rounded-lg text-xs font-bold bg-white/5 border border-white/10 hover:border-gold/40 transition">YES</button>
+                                <button onclick="auditSelect(6, false)" id="q6-no" class="px-5 py-2 rounded-lg text-xs font-bold bg-white/5 border border-white/10 hover:border-gold/40 transition">NO</button>
                             </div>
                         </div>
 
-                        <!-- Result Box -->
                         <div class="mt-8 pt-6 border-t border-white/5 text-center">
-                            <button onclick="calculateAuditScore()" class="px-6 py-3 bg-gold text-black font-bold rounded-xl text-xs uppercase tracking-wider hover:bg-gold-glow transition shadow-lg">Analyze Matrix</button>
+                            <button onclick="calculateAuditScore()" class="px-8 py-3.5 bg-gold text-black font-bold rounded-xl text-xs uppercase tracking-wider hover:bg-gold-glow transition shadow-lg">Analyze Server Vulnerability</button>
                             
                             <div id="audit-result-box" class="hidden mt-6 bg-[#08080C] border border-white/10 rounded-2xl p-6 text-left">
                                 <div class="flex items-center justify-between mb-2">
-                                    <span class="text-xs uppercase font-mono tracking-wider text-gray-400">Calculated Vulnerability Index:</span>
+                                    <span class="text-xs uppercase font-mono tracking-wider text-gray-400">Calculated Security Risk:</span>
                                     <span id="audit-score-text" class="text-lg font-heading font-bold text-red-400">0%</span>
                                 </div>
                                 <div class="w-full bg-white/5 h-2 rounded-full overflow-hidden mb-4">
@@ -219,7 +256,6 @@
                 </div>
             </section>
 
-            <!-- COMPETITOR COMPARISON MATRIX -->
             <section class="max-w-6xl mx-auto px-4 py-12">
                 <div class="text-center mb-10">
                     <h2 class="font-heading font-bold text-2xl sm:text-3xl uppercase tracking-wide">Why Choose <span class="text-gold">Oxelate</span>?</h2>
@@ -255,7 +291,6 @@
                 </div>
             </section>
 
-            <!-- 🛠️ ACTIVE DEVELOPMENT TIMELINE / CHANGELOG -->
             <section class="max-w-3xl mx-auto px-4 py-12">
                 <div class="text-center mb-12">
                     <h2 class="font-heading font-bold text-2xl uppercase tracking-wide text-gold">Development Core Roadmap</h2>
@@ -263,14 +298,12 @@
                 </div>
                 
                 <div class="relative border-l border-white/10 ml-4 space-y-8">
-                    <!-- Timeline Item 1 -->
                     <div class="relative pl-6">
                         <div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-gold shadow-[0_0_8px_#D4AF37]"></div>
                         <span class="text-[10px] font-mono text-gold uppercase tracking-wider block mb-1">June 2026 — Build v1.0.4</span>
                         <h4 class="text-sm font-heading font-bold uppercase text-gray-200">Anti-Bypass Exploit Patch</h4>
                         <p class="text-xs text-gray-400 mt-1 leading-relaxed">Patched specific API manipulation exploits where rapid multi-threaded role updates tried to bypass threshold limits.</p>
                     </div>
-                    <!-- Timeline Item 2 -->
                     <div class="relative pl-6">
                         <div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-white/20"></div>
                         <span class="text-[10px] font-mono text-gray-500 uppercase tracking-wider block mb-1">June 2026 — Build v1.0.0</span>
@@ -280,7 +313,6 @@
                 </div>
             </section>
 
-            <!-- HARD-HITTING FAQ SECTION -->
             <section class="max-w-3xl mx-auto px-4 py-12">
                 <div class="text-center mb-10">
                     <h2 class="font-heading font-bold text-2xl uppercase tracking-wide text-gold">Frequently Answered Protocols</h2>
@@ -297,9 +329,8 @@
                 </div>
             </section>
 
-            <!-- FINAL CTA SECTION -->
             <section class="max-w-4xl mx-auto px-4 py-12">
-                <div class="bg-[#14141C] border border-gold/20 rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden box-glow transition">
+                <div class="bg-[#14141C] border border-gold/20 rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden box-glow">
                     <h2 class="font-heading font-bold text-2xl sm:text-4xl uppercase mb-4">Ready to Upgrade Your Server's Defense?</h2>
                     <p class="text-gray-400 text-sm sm:text-base max-w-xl mx-auto mb-8">Deploy the ultimate hybrid security bot today. Setup takes less than two minutes.</p>
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -310,7 +341,6 @@
             </section>
         </div>
 
-        <!-- [TAB B] FEATURES / COMMAND TERMINAL SECTION -->
         <div id="section-features" class="tab-section max-w-4xl mx-auto px-4 pt-20 pb-16">
             <div class="text-center mb-10">
                 <h2 class="font-heading font-bold text-3xl uppercase text-gold tracking-wide">Command Directory</h2>
@@ -318,8 +348,7 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Category 1 -->
-                <div class="bg-cardBg border border-white/5 rounded-2xl p-5">
+                <div class="bg-cardBg border border-white/5 rounded-2xl p-5 box-glow">
                     <div class="text-gold font-heading font-bold text-sm uppercase tracking-wider border-b border-white/5 pb-2 mb-4 flex items-center gap-2">
                         <span>🛡️</span> Antinuke Module
                     </div>
@@ -329,8 +358,7 @@
                         <div><span class="text-gold">o!config antinuke</span><p class="text-gray-500 text-[11px] font-sans mt-0.5">Displays exact detection limits.</p></div>
                     </div>
                 </div>
-                <!-- Category 2 -->
-                <div class="bg-cardBg border border-white/5 rounded-2xl p-5">
+                <div class="bg-cardBg border border-white/5 rounded-2xl p-5 box-glow">
                     <div class="text-gold font-heading font-bold text-sm uppercase tracking-wider border-b border-white/5 pb-2 mb-4 flex items-center gap-2">
                         <span>🚪</span> Antiraid Module
                     </div>
@@ -339,8 +367,7 @@
                         <div><span class="text-gold">o!lockdown channels</span><p class="text-gray-500 text-[11px] font-sans mt-0.5">Closes writing gates instantly across server.</p></div>
                     </div>
                 </div>
-                <!-- Category 3 -->
-                <div class="bg-cardBg border border-white/5 rounded-2xl p-5">
+                <div class="bg-cardBg border border-white/5 rounded-2xl p-5 box-glow">
                     <div class="text-gold font-heading font-bold text-sm uppercase tracking-wider border-b border-white/5 pb-2 mb-4 flex items-center gap-2">
                         <span>⚡</span> Utility Systems
                     </div>
@@ -352,7 +379,6 @@
             </div>
         </div>
 
-        <!-- [TAB C] WEB DASHBOARD (COMING SOON) SECTION -->
         <div id="section-dashboard" class="tab-section max-w-4xl mx-auto px-4 pt-24 pb-16">
             <div class="bg-[#121218]/60 border border-gold/20 backdrop-blur-xl rounded-3xl p-8 sm:p-12 shadow-[0_0_50px_rgba(212,175,55,0.05)] max-w-xl mx-auto text-center">
                 <div class="w-16 h-16 bg-gold/10 border border-gold/20 text-gold rounded-2xl flex items-center justify-center text-2xl mx-auto mb-6 animate-pulse">🖥️</div>
@@ -366,7 +392,6 @@
             </div>
         </div>
 
-        <!-- [TAB D] STATUS SECTION -->
         <div id="section-status" class="tab-section max-w-4xl mx-auto px-4 pt-24 pb-16">
             <div class="relative z-10 bg-[#121218]/60 border border-gold/20 backdrop-blur-xl rounded-3xl p-8 sm:p-12 shadow-[0_0_50px_rgba(212,175,55,0.05)] max-w-2xl mx-auto">
                 <h2 class="font-heading font-bold text-2xl sm:text-3xl uppercase tracking-wide text-gold border-b border-white/5 pb-4 mb-6">📊 Oxelate Status Dashboard</h2>
@@ -384,7 +409,6 @@
 
     </main>
 
-    <!-- FOOTER -->
     <footer class="border-t border-white/5 bg-[#08080C] mt-20">
         <div class="max-w-6xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-4 gap-8 text-sm">
             <div>
@@ -421,8 +445,6 @@
         </div>
     </footer>
 
-    <!-- MODALS -->
-    <!-- PRIVACY POLICY MODAL -->
     <div id="privacy-modal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
         <div class="bg-[#121218] border border-gold/30 rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto p-6 sm:p-8 box-glow relative">
             <button onclick="closeModal('privacy-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-gold text-xl font-bold">&times;</button>
@@ -433,7 +455,6 @@
         </div>
     </div>
 
-    <!-- TERMS OF SERVICE MODAL -->
     <div id="tos-modal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
         <div class="bg-[#121218] border border-gold/30 rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto p-6 sm:p-8 box-glow relative">
             <button onclick="closeModal('tos-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-gold text-xl font-bold">&times;</button>
@@ -444,10 +465,9 @@
         </div>
     </div>
 
-    <!-- EMBEDDED JAVASCRIPT ENGINE -->
     <script>
-        // Audit Data State
-        let auditAnswers = { 1: null, 2: null, 3: null };
+        // Expanded State Matrix for 6 Questions
+        let auditAnswers = { 1: null, 2: null, 3: null, 4: null, 5: null, 6: null };
 
         function auditSelect(qNum, isYes) {
             auditAnswers[qNum] = isYes;
@@ -456,28 +476,38 @@
             const noBtn = document.getElementById(`q${qNum}-no`);
             
             if (isYes) {
-                yesBtn.classList.replace('bg-white/5', 'bg-gold');
-                yesBtn.classList.replace('text-white', 'text-black');
-                noBtn.classList.replace('bg-gold', 'bg-white/5');
-                noBtn.classList.replace('text-black', 'text-white');
+                yesBtn.classList.remove('bg-white/5', 'text-white');
+                yesBtn.classList.add('bg-gold', 'text-black');
+                
+                noBtn.classList.remove('bg-gold', 'text-black');
+                noBtn.classList.add('bg-white/5', 'text-white');
             } else {
-                noBtn.classList.replace('bg-white/5', 'bg-gold');
-                noBtn.classList.replace('text-black', 'text-white');
-                yesBtn.classList.replace('bg-gold', 'bg-white/5');
-                yesBtn.classList.replace('text-black', 'text-white');
+                noBtn.classList.remove('bg-white/5', 'text-white');
+                noBtn.classList.add('bg-gold', 'text-black');
+                
+                yesBtn.classList.remove('bg-gold', 'text-black');
+                yesBtn.classList.add('bg-white/5', 'text-white');
             }
         }
 
         function calculateAuditScore() {
-            if (auditAnswers[1] === null || auditAnswers[2] === null || auditAnswers[3] === null) {
-                alert("Please answer all structural metrics before running synthesis.");
-                return;
+            // Strict execution verification loop
+            for (let i = 1; i <= 6; i++) {
+                if (auditAnswers[i] === null) {
+                    alert(`Please respond to metric question #${i} to complete deep risk mapping.`);
+                    return;
+                }
             }
 
             let score = 0;
-            if (auditAnswers[1] === true) score += 35; // Multiple admins = Risk
-            if (auditAnswers[2] === false) score += 40; // Slow response = Extreme Risk
-            if (auditAnswers[3] === false) score += 25; // No backup system = Risk
+            
+            // Mathematical risk weighting logic
+            if (auditAnswers[1] === true) score += 15;  // Too many admins
+            if (auditAnswers[2] === false) score += 25; // Slow reaction time (Critical vulnerability)
+            if (auditAnswers[3] === false) score += 15; // No backup owner system
+            if (auditAnswers[4] === false) score += 15; // Malicious webhooks vulnerable
+            if (auditAnswers[5] === false) score += 15; // Vanity URL exploit exposure
+            if (auditAnswers[6] === false) score += 15; // Role hierarchy vulnerability
 
             const resultBox = document.getElementById('audit-result-box');
             const scoreText = document.getElementById('audit-score-text');
@@ -488,12 +518,19 @@
             scoreText.innerText = `${score}%`;
             progressBar.style.width = `${score}%`;
 
+            // Dynamic UI adjustment based on result metrics
             if (score >= 70) {
-                verdictText.innerHTML = `<span class="text-red-400 font-bold">CRITICAL EXPOSURE:</span> Your layout is heavily exposed to rogue admin nukes. Oxelate's sub-450ms detection loop and decentralized owner configurations are highly recommended to prevent immediate liquidation.`;
+                scoreText.className = "text-lg font-heading font-bold text-red-500 gold-glow";
+                progressBar.className = "bg-red-500 h-full transition-all duration-500 shadow-[0_0_10px_#ef4444]";
+                verdictText.innerHTML = `<span class="text-red-400 font-bold">CRITICAL SYSTEM VULNERABILITY:</span> Your architecture has massive loopholes. Delayed anti-nuke response cycles and basic role configurations mean a single compromised staff token can completely wipe your channels and transfer your vanity links. Deploy Oxelate's fast real-time protection engine immediately to secure these protocols.`;
             } else if (score >= 35) {
-                verdictText.innerHTML = `<span class="text-yellow-400 font-bold">MODERATE RISK:</span> Standard vulnerabilities detected. While baseline rules exist, delayed latency lines can fail during multi-threaded attack spikes.`;
+                scoreText.className = "text-lg font-heading font-bold text-yellow-500";
+                progressBar.className = "bg-yellow-500 h-full transition-all duration-500";
+                verdictText.innerHTML = `<span class="text-yellow-400 font-bold">MODERATE ARCHITECTURE RISK:</span> Your server structure has selective defenses, but lacks decentralized backup nodes or rapid webhook filters. Under multi-threaded attack conditions, manual interventions or generic bots will crash or timeout.`;
             } else {
-                verdictText.innerHTML = `<span class="text-green-400 font-bold">OPTIMIZED GROUND:</span> Your layout structure is clean, but maintaining zero-latency monitoring requires automated execution mirrors. Deploy Oxelate to secure this state permanently.`;
+                scoreText.className = "text-lg font-heading font-bold text-green-500";
+                progressBar.className = "bg-green-500 h-full transition-all duration-500";
+                verdictText.innerHTML = `<span class="text-green-400 font-bold">FORTIFIED GROUND:</span> Your internal structure is clean and properly isolated. To lock down this state permanently and prevent future configuration drifts, integrate Oxelate to run fully automated monitoring loops.`;
             }
         }
 
