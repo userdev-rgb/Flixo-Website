@@ -58,14 +58,30 @@
             opacity: 1;
         }
 
-        /* Hide Scrollbar for clean mobile menus */
+        /* Hide Scrollbar for clean mobile menus & modals */
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Custom Scrollbar for Modals */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #0B0B0F;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(212, 175, 55, 0.3);
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(212, 175, 55, 0.6);
+        }
     </style>
 </head>
 <body class="bg-darkBg text-white font-body selection:bg-gold selection:text-black overflow-x-hidden">
 
-    <!-- 1. NAVBAR (Fixed Mobile Visibility Bug) -->
+    <!-- NAVBAR -->
     <header class="w-full max-w-6xl mx-auto px-4 pt-6">
         <nav class="bg-[#14141C]/80 backdrop-blur-md border border-white/5 rounded-2xl md:rounded-full px-4 py-4 md:py-3 flex flex-col md:flex-row items-center justify-between gap-4 shadow-lg">
             
@@ -76,13 +92,12 @@
                     </div>
                     <span class="font-heading font-bold tracking-wide text-lg">OXELATE</span>
                 </div>
-                <!-- Mini Quick Actions for Mobile Viewports -->
                 <div class="flex md:hidden items-center gap-2">
                     <a href="https://discord.com/oauth2/authorize?client_id=1366032618788880467" target="_blank" class="px-3 py-1.5 rounded-lg text-[11px] font-bold bg-gold text-black">Invite</a>
                 </div>
             </div>
             
-            <!-- Mobile Responsive Scrollable Links (No Menu Hiding Flaws) -->
+            <!-- Mobile Responsive Scrollable Links -->
             <div class="w-full md:w-auto flex items-center justify-start md:justify-center gap-5 overflow-x-auto pb-1 md:pb-0 text-xs sm:text-sm font-medium text-gray-400 no-scrollbar border-t border-white/5 pt-3 md:pt-0 md:border-none">
                 <button onclick="switchTab('home')" id="btn-home" class="text-white hover:text-gold transition font-medium shrink-0">Home</button>
                 <button onclick="switchTab('features')" id="btn-features" class="hover:text-gold transition font-medium shrink-0">Commands</button>
@@ -103,12 +118,8 @@
 
         <!-- [TAB A] HOME SECTION -->
         <div id="section-home" class="tab-section active-section">
-            
-            <!-- HERO TOP ROW: TEXT VS LOGO -->
             <section class="max-w-6xl mx-auto px-4 pt-16 pb-6 relative">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    
-                    <!-- Left Column: Pure Text Matrix -->
                     <div class="text-left">
                         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold/10 border border-gold/20 text-gold text-xs font-semibold tracking-wider uppercase mb-6">
                             🛡️ Next-Generation Protection
@@ -124,21 +135,16 @@
                             <a href="https://discord.gg/2xuxDxzXKh" target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold bg-[#14141C] border border-white/10 hover:border-gold/40 transition text-sm uppercase tracking-wider text-center">Join Support Server</a>
                         </div>
                     </div>
-                    
-                    <!-- Right Column: Pure Branded Logo Container (Aligned Directly) -->
                     <div class="flex items-center justify-center lg:justify-end py-4">
                         <div class="relative w-64 h-64 sm:w-80 sm:h-80 p-6 rounded-3xl bg-[#121218] border border-gold/20 shadow-[0_0_55px_rgba(212,175,55,0.08)] flex items-center justify-center group box-glow">
                             <img src="logo.png" alt="Oxelate Brand" class="w-full h-full object-contain rounded-2xl relative z-10">
                         </div>
                     </div>
-
                 </div>
             </section>
 
-            <!-- HERO BOTTOM ROW: SEPARATED ENLARGED TERMINAL SYSTEM -->
             <section class="max-w-6xl mx-auto px-4 pb-12">
                 <div class="w-full max-w-4xl mx-auto bg-[#07070A] border border-white/10 rounded-xl overflow-hidden shadow-2xl box-glow">
-                    <!-- macOS Style Header Bar -->
                     <div class="bg-[#101016] px-4 py-3 flex items-center justify-between border-b border-white/5">
                         <div class="flex items-center gap-2">
                             <span class="w-3 h-3 rounded-full bg-red-500 block"></span>
@@ -148,7 +154,6 @@
                         <span class="text-[10px] font-mono uppercase tracking-widest text-gray-500">Core-Engine-Live-Stream</span>
                         <span class="text-[10px] font-mono text-gold px-2 py-0.5 rounded bg-gold/10 border border-gold/20">v1.0.4</span>
                     </div>
-                    <!-- Logs Screen Area -->
                     <div class="p-6 font-mono text-[12px] sm:text-[13px] text-gray-400 space-y-3 min-h-[200px] leading-relaxed">
                         <div class="flex items-start gap-2">
                             <span class="text-gray-600 shrink-0">[21:42:10]</span> 
@@ -178,7 +183,6 @@
                 </div>
             </section>
 
-            <!-- STATS GRID -->
             <section class="max-w-6xl mx-auto px-4 py-6">
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                     <div class="bg-cardBg border border-white/5 rounded-2xl p-6 relative overflow-hidden box-glow">
@@ -200,7 +204,6 @@
                 </div>
             </section>
 
-            <!-- PREMIUM TESTIMONIALS (Fixed Based on image_c771f0.png) -->
             <section class="max-w-6xl mx-auto px-4 py-12">
                 <div class="text-center mb-10">
                     <div class="inline-block bg-gold/10 border border-gold/30 text-gold text-[10px] font-mono uppercase tracking-widest px-3 py-1 rounded-full mb-3">
@@ -211,63 +214,45 @@
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Review Card 1 -->
                     <div class="bg-cardBg border border-white/5 p-6 rounded-2xl flex flex-col justify-between box-glow">
                         <div>
-                            <!-- Gold Stars -->
-                            <div class="flex items-center gap-1 text-amber-400 text-sm mb-4">
-                                ★★★★★
-                            </div>
+                            <div class="flex items-center gap-1 text-amber-400 text-sm mb-4">★★★★★</div>
                             <p class="text-gray-300 text-xs sm:text-sm leading-relaxed mb-6 font-medium">
                                 "Oxelate completely handled our security layout. The action logs latency is extremely low, and the bot responds under half a second when changes are triggered. Highly recommended for configuration safety."
                             </p>
                         </div>
                         <div class="border-t border-white/5 pt-4 flex items-center gap-3">
-                            <div class="w-9 h-9 rounded-full bg-purple-600/80 flex items-center justify-center font-bold text-xs text-white">
-                                K
-                            </div>
+                            <div class="w-9 h-9 rounded-full bg-purple-600/80 flex items-center justify-center font-bold text-xs text-white">K</div>
                             <div>
                                 <h4 class="text-xs font-bold text-white uppercase tracking-wider">Krypton</h4>
                                 <p class="text-[10px] text-gray-500">Early Tester — Tech Owner</p>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Review Card 2 -->
                     <div class="bg-cardBg border border-white/5 p-6 rounded-2xl flex flex-col justify-between box-glow">
                         <div>
-                            <div class="flex items-center gap-1 text-amber-400 text-sm mb-4">
-                                ★★★★★
-                            </div>
+                            <div class="flex items-center gap-1 text-amber-400 text-sm mb-4">★★★★★</div>
                             <p class="text-gray-300 text-xs sm:text-sm leading-relaxed mb-6 font-medium">
                                 "The anti-webhook filters are robust. We ran deep configuration tests with alternate accounts trying to bypass setup hierarchies, and the system isolated the accounts instantly without downtime."
                             </p>
                         </div>
                         <div class="border-t border-white/5 pt-4 flex items-center gap-3">
-                            <div class="w-9 h-9 rounded-full bg-blue-600/80 flex items-center justify-center font-bold text-xs text-white">
-                                Z
-                            </div>
+                            <div class="w-9 h-9 rounded-full bg-blue-600/80 flex items-center justify-center font-bold text-xs text-white">Z</div>
                             <div>
                                 <h4 class="text-xs font-bold text-white uppercase tracking-wider">Zeus_A</h4>
                                 <p class="text-[10px] text-gray-500">Lead Systems Monitor</p>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Review Card 3 -->
                     <div class="bg-cardBg border border-white/5 p-6 rounded-2xl flex flex-col justify-between box-glow">
                         <div>
-                            <div class="flex items-center gap-1 text-amber-400 text-sm mb-4">
-                                ★★★★★
-                            </div>
+                            <div class="flex items-center gap-1 text-amber-400 text-sm mb-4">★★★★★</div>
                             <p class="text-gray-300 text-xs sm:text-sm leading-relaxed mb-6 font-medium">
                                 "Clean implementation layout. Unlike heavily bloated general security options out there, Oxelate focuses solely on core protection performance metrics and quick automated recoveries."
                             </p>
                         </div>
                         <div class="border-t border-white/5 pt-4 flex items-center gap-3">
-                            <div class="w-9 h-9 rounded-full bg-emerald-600/80 flex items-center justify-center font-bold text-xs text-white">
-                                NV
-                            </div>
+                            <div class="w-9 h-9 rounded-full bg-emerald-600/80 flex items-center justify-center font-bold text-xs text-white">NV</div>
                             <div>
                                 <h4 class="text-xs font-bold text-white uppercase tracking-wider">Nova_V</h4>
                                 <p class="text-[10px] text-gray-500">Guild Administrator</p>
@@ -277,7 +262,6 @@
                 </div>
             </section>
 
-            <!-- RISK ASSESSMENT MATRIX -->
             <section class="max-w-4xl mx-auto px-4 py-12">
                 <div class="bg-[#111116] border border-white/5 rounded-3xl p-6 sm:p-10 box-glow">
                     <div class="text-center mb-10">
@@ -289,7 +273,7 @@
                     </div>
 
                     <div class="space-y-4 max-w-3xl mx-auto">
-                        <!-- Q1 -->
+                        <!-- Q1 to Q6 -->
                         <div class="bg-cardBg border border-white/5 p-4 sm:p-5 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                             <span class="text-xs sm:text-sm text-gray-300 font-medium">1. Do you have more than 2 staff accounts with full "Administrator" permissions?</span>
                             <div class="flex gap-2 shrink-0">
@@ -297,7 +281,6 @@
                                 <button onclick="auditSelect(1, false)" id="q1-no" class="px-5 py-2 rounded-lg text-xs font-bold bg-white/5 border border-white/10 hover:border-gold/40 transition">NO</button>
                             </div>
                         </div>
-                        <!-- Q2 -->
                         <div class="bg-cardBg border border-white/5 p-4 sm:p-5 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                             <span class="text-xs sm:text-sm text-gray-300 font-medium">2. Can your current bot track audit logs and auto-restore deleted channels in less than 500 milliseconds?</span>
                             <div class="flex gap-2 shrink-0">
@@ -305,7 +288,6 @@
                                 <button onclick="auditSelect(2, false)" id="q2-no" class="px-5 py-2 rounded-lg text-xs font-bold bg-white/5 border border-white/10 hover:border-gold/40 transition">NO</button>
                             </div>
                         </div>
-                        <!-- Q3 -->
                         <div class="bg-cardBg border border-white/5 p-4 sm:p-5 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                             <span class="text-xs sm:text-sm text-gray-300 font-medium">3. If the primary owner's personal Discord account gets hacked, do you have a secondary trusted backup owner system ready?</span>
                             <div class="flex gap-2 shrink-0">
@@ -313,7 +295,6 @@
                                 <button onclick="auditSelect(3, false)" id="q3-no" class="px-5 py-2 rounded-lg text-xs font-bold bg-white/5 border border-white/10 hover:border-gold/40 transition">NO</button>
                             </div>
                         </div>
-                        <!-- Q4 -->
                         <div class="bg-cardBg border border-white/5 p-4 sm:p-5 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                             <span class="text-xs sm:text-sm text-gray-300 font-medium">4. Does your server have a system that blocks malicious webhooks created instantly by rogue staff members?</span>
                             <div class="flex gap-2 shrink-0">
@@ -321,7 +302,6 @@
                                 <button onclick="auditSelect(4, false)" id="q4-no" class="px-5 py-2 rounded-lg text-xs font-bold bg-white/5 border border-white/10 hover:border-gold/40 transition">NO</button>
                             </div>
                         </div>
-                        <!-- Q5 -->
                         <div class="bg-cardBg border border-white/5 p-4 sm:p-5 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                             <span class="text-xs sm:text-sm text-gray-300 font-medium">5. Is your custom Server Vanity URL protected from being immediately stolen if someone removes your level-3 boosts?</span>
                             <div class="flex gap-2 shrink-0">
@@ -329,7 +309,6 @@
                                 <button onclick="auditSelect(5, false)" id="q5-no" class="px-5 py-2 rounded-lg text-xs font-bold bg-white/5 border border-white/10 hover:border-gold/40 transition">NO</button>
                             </div>
                         </div>
-                        <!-- Q6 -->
                         <div class="bg-cardBg border border-white/5 p-4 sm:p-5 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                             <span class="text-xs sm:text-sm text-gray-300 font-medium">6. Are your general moderation roles restricted from editing or moving the security bot's role hierarchy?</span>
                             <div class="flex gap-2 shrink-0">
@@ -357,7 +336,6 @@
                 </div>
             </section>
 
-            <!-- FINAL CTA SECTION -->
             <section class="max-w-4xl mx-auto px-4 py-12">
                 <div class="bg-[#14141C] border border-gold/20 rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden box-glow">
                     <h2 class="font-heading font-bold text-2xl sm:text-4xl uppercase mb-4">Ready to Upgrade Your Server's Defense?</h2>
@@ -370,7 +348,7 @@
             </section>
         </div>
 
-        <!-- [TAB B] FEATURES / COMMAND TERMINAL SECTION -->
+        <!-- [TAB B] FEATURES -->
         <div id="section-features" class="tab-section max-w-4xl mx-auto px-4 pt-20 pb-16">
             <div class="text-center mb-10">
                 <h2 class="font-heading font-bold text-3xl uppercase text-gold tracking-wide">Command Directory</h2>
@@ -454,20 +432,84 @@
         </div>
     </footer>
 
-    <!-- MODALS -->
+    <!-- MODALS: PRIVACY POLICY -->
     <div id="privacy-modal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-        <div class="bg-[#121218] border border-gold/30 rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto p-6 relative">
-            <button onclick="closeModal('privacy-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-gold text-xl font-bold">&times;</button>
-            <h2 class="font-heading font-bold text-xl text-gold uppercase mb-2">PRIVACY POLICY</h2>
-            <p class="text-xs text-gray-400 mt-4">We process and temporarily retain server metadata purely to execute active anti-destruction measures.</p>
+        <div class="bg-[#121218] border border-gold/30 rounded-2xl max-w-3xl w-full max-h-[85vh] overflow-y-auto p-6 md:p-8 relative custom-scrollbar box-glow">
+            <button onclick="closeModal('privacy-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-gold text-3xl font-bold transition">&times;</button>
+            <h2 class="font-heading font-bold text-2xl text-gold uppercase mb-6 border-b border-white/10 pb-4">Privacy Policy</h2>
+            
+            <div class="space-y-6 text-sm text-gray-300 leading-relaxed font-body">
+                <p>Welcome to the Oxelate Privacy Policy. We are completely committed to protecting your data and your server's metadata while ensuring maximum security capabilities.</p>
+                
+                <div>
+                    <h3 class="text-white font-bold mb-2">1. Information We Collect</h3>
+                    <p class="mb-2">To provide automated anti-nuke and moderation functions, we collect and temporarily store the following variables:</p>
+                    <ul class="list-disc pl-5 space-y-1 text-gray-400">
+                        <li><strong>Server Identification:</strong> Guild IDs, Role IDs, and Channel IDs to properly execute restoration protocols.</li>
+                        <li><strong>User Identification:</strong> Discord User IDs of server members to maintain whitelists, blacklists, and punishment logs.</li>
+                        <li><strong>Activity Logs:</strong> Action metadata (e.g., who deleted a channel) solely for processing through our rule engine.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-white font-bold mb-2">2. How We Use The Data</h3>
+                    <p class="text-gray-400">Data is strictly utilized for the functional mechanics of the bot. We do NOT use this data for tracking, advertising, or compiling user profiles. The collected data ensures that when an unauthorized action is detected, the bot can reverse it instantly.</p>
+                </div>
+
+                <div>
+                    <h3 class="text-white font-bold mb-2">3. Data Retention & Deletion</h3>
+                    <p class="text-gray-400">All configurations and associated server data are kept securely within our database as long as the bot remains active in your server. If Oxelate is kicked or removed from your server, all corresponding configuration data is wiped from our primary databases within 30 days automatically.</p>
+                </div>
+
+                <div>
+                    <h3 class="text-white font-bold mb-2">4. Third-Party Sharing</h3>
+                    <p class="text-gray-400">We do NOT sell, rent, or trade your server's data. The only third-party system we interact with is the official Discord API to fetch and execute necessary commands.</p>
+                </div>
+
+                <div class="bg-white/5 p-4 rounded-xl border border-white/10 mt-6">
+                    <p class="text-xs text-gray-400">If you have concerns about your data or wish to request manual deletion, please open a ticket in our Support Server.</p>
+                </div>
+            </div>
         </div>
     </div>
 
+    <!-- MODALS: TERMS OF SERVICE -->
     <div id="tos-modal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-        <div class="bg-[#121218] border border-gold/30 rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto p-6 relative">
-            <button onclick="closeModal('tos-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-gold text-xl font-bold">&times;</button>
-            <h2 class="font-heading font-bold text-xl text-gold uppercase mb-2">TERMS OF SERVICE</h2>
-            <p class="text-xs text-gray-400 mt-4">By adding the bot, administrators acknowledge that security measures trigger automatically based on custom parameters.</p>
+        <div class="bg-[#121218] border border-gold/30 rounded-2xl max-w-3xl w-full max-h-[85vh] overflow-y-auto p-6 md:p-8 relative custom-scrollbar box-glow">
+            <button onclick="closeModal('tos-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-gold text-3xl font-bold transition">&times;</button>
+            <h2 class="font-heading font-bold text-2xl text-gold uppercase mb-6 border-b border-white/10 pb-4">Terms of Service</h2>
+            
+            <div class="space-y-6 text-sm text-gray-300 leading-relaxed font-body">
+                
+                <!-- Mandatory Discord TOS Alert Box -->
+                <div class="bg-gold/10 border border-gold/40 p-5 rounded-xl shadow-[0_0_15px_rgba(212,175,55,0.15)]">
+                    <strong class="text-gold text-base block mb-2 flex items-center gap-2">⚠️ Mandatory Platform Compliance</strong>
+                    <p class="text-gray-300 text-sm">By utilizing Oxelate, you are strictly required to comply with Discord's official guidelines. We enforce a zero-tolerance policy against servers violating Discord's rules. <br><br>
+                    <a href="https://discord.com/terms" target="_blank" class="inline-flex items-center gap-1 text-gold font-bold hover:underline hover:text-gold-glow transition">🔗 Read Official Discord Terms of Service Here &rarr;</a></p>
+                </div>
+
+                <p>By inviting the Oxelate application into your guild, you automatically agree to abide by these Terms of Service. If you disagree with any part of these terms, you must remove the bot immediately.</p>
+                
+                <div>
+                    <h3 class="text-white font-bold mb-2">1. Acceptable Use</h3>
+                    <p class="text-gray-400">Oxelate is designed to provide security and moderation utility. You agree not to intentionally exploit, reverse-engineer, or spam the bot's API endpoints or commands. Any attempt to crash the bot or abuse its systems will result in a permanent global blacklist for your account and your server.</p>
+                </div>
+
+                <div>
+                    <h3 class="text-white font-bold mb-2">2. Liability & Bot Actions</h3>
+                    <p class="text-gray-400">Oxelate operates on an automated trigger basis depending on the configurations set by your server administrators. We are NOT liable for any damages, accidental bans, or channel deletions caused by misconfiguration of the bot on your end. The responsibility of securing the bot's roles and permissions falls entirely on the Server Owner.</p>
+                </div>
+
+                <div>
+                    <h3 class="text-white font-bold mb-2">3. Service Availability</h3>
+                    <p class="text-gray-400">While we strive for 99.9% uptime, Oxelate is provided on an "as-is" and "as-available" basis. We reserve the right to modify, suspend, or discontinue any part of the service temporarily for maintenance without prior notice.</p>
+                </div>
+
+                <div>
+                    <h3 class="text-white font-bold mb-2">4. Right to Refuse Service</h3>
+                    <p class="text-gray-400">The developers of Oxelate reserve the right to restrict access, blacklist users, or force-leave any server that is deemed to be violating our policies, Discord's policies, or engaging in malicious activities.</p>
+                </div>
+            </div>
         </div>
     </div>
 
