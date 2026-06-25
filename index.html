@@ -4,48 +4,407 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oxelate Security Network</title>
-    <!-- External CSS Dependencies -->
-    <link rel="stylesheet" href="style.css">
-    <!-- FontAwesome for Premium Icons -->
+    <!-- FontAwesome Icons Setup -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Premium Space UI Dark Theme Styling */
+        :root {
+            --bg-dark: #07070b;
+            --card-bg: rgba(18, 18, 26, 0.7);
+            --border-color: rgba(212, 175, 55, 0.18);
+            --gold: #d4af37;
+            --neon-green: #39ff14;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(7, 7, 11, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 18px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .gold-glow {
+            color: var(--gold);
+            text-shadow: 0 0 12px rgba(212, 175, 55, 0.6);
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 30px;
+            transition: 0.3s ease;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .btn-nav {
+            background: var(--gold);
+            color: #000 !important;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 700 !important;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Hero Layout Container */
+        .hero {
+            min-height: 75vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 140px 20px 40px 20px;
+            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.05) 0%, rgba(7, 7, 11, 0) 65%);
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .badge-premium {
+            background: rgba(57, 255, 20, 0.06);
+            border: 1px solid rgba(57, 255, 20, 0.25);
+            color: var(--neon-green);
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            display: inline-block;
+        }
+
+        .hero h1 {
+            font-size: 3.6rem;
+            font-weight: 900;
+            margin: 25px 0;
+            color: #fff;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            line-height: 1.7;
+        }
+
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: #000;
+            padding: 15px 32px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+            transition: 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.5);
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--border-color);
+            color: #fff;
+            padding: 15px 32px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--gold);
+        }
+
+        /* Live Counter Grid Layout Fix */
+        .metrics-bar {
+            max-width: 1000px;
+            margin: 0 auto 60px auto;
+            display: flex;
+            gap: 25px;
+            padding: 0 20px;
+        }
+
+        .metric-card {
+            flex: 1;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            padding: 22px 25px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+        }
+
+        .metric-icon {
+            font-size: 1.8rem;
+            color: var(--gold);
+        }
+
+        .metric-label {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .status-indicator.live {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            width: 8px;
+            height: 8px;
+            background: var(--neon-green);
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--neon-green);
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink { 50% { opacity: 0.2; } }
+
+        /* Unified Layout Wrapper */
+        .main-layout-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            padding: 0 20px 100px 20px;
+        }
+
+        .section-container {
+            width: 100%;
+            padding: 40px 0;
+        }
+
+        .section-title {
+            font-size: 2.4rem;
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        /* Search Layout Parameters */
+        .search-wrapper {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto 45px auto;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 22px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        #command-search {
+            width: 100%;
+            background: rgba(14, 14, 22, 0.9);
+            border: 1px solid var(--border-color);
+            padding: 18px 18px 18px 55px;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        #command-search:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
+        }
+
+        /* Dynamic Grid Layout */
+        .commands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .command-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 25px;
+            border-radius: 10px;
+            transition: 0.3s ease;
+        }
+
+        .command-card:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+            transform: translateY(-3px);
+            background: rgba(22, 22, 32, 0.8);
+        }
+
+        .command-trigger {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.15rem;
+            color: var(--neon-green);
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .command-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* FAQ Interface Custom Layout */
+        .faq-accordion {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .faq-header {
+            padding: 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: #fff;
+        }
+
+        .faq-header:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 22px;
+            color: var(--text-muted);
+            line-height: 1.7;
+            transition: max-height 0.3s cubic-bezier(0, 1, 0, 1), padding 0.3s ease;
+        }
+
+        .faq-item.active .faq-content {
+            max-height: 300px;
+            padding: 0 22px 22px 22px;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        /* Responsive Setup Rules */
+        @media (max-width: 768px) {
+            .navbar .nav-links { display: none; }
+            .hero h1 { font-size: 2.5rem; }
+            .metrics-bar { flex-direction: column; }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Premium Navigation Bar -->
+    <!-- Navigation Block Layout -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">
                 <i class="fa-solid fa-shield-halved gold-glow"></i> OXELATE
             </div>
             <div class="nav-links">
-                <a href="#features">Features</a>
-                <a href="#commands">Commands</a>
-                <a href="#faq">FAQ</a>
-                <a href="https://discord.com" class="btn-nav">Invite Bot</a>
+                <a href="#commands">Modules</a>
+                <a href="#faq">FAQ Matrix</a>
+                <a href="https://discord.com" class="btn-nav" target="_blank">Invite Bot</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Main Entry Module Hero -->
     <header class="hero">
         <div class="hero-content">
-            <span class="badge-premium"><i class="fa-solid fa-bolt neon-green"></i> NEXT-GENERATION PROTECTION</span>
+            <span class="badge-premium"><i class="fa-solid fa-bolt neon-green"></i> ALPHA PROTECTION MATRIX</span>
             <h1>Fortified Guild Control for Modern Communities</h1>
             <p>An ultra-high-speed security network engineered to protect your infrastructure against token leaks, rogue administrations, and automated raid configurations.</p>
             <div class="hero-actions">
-                <a href="#" class="btn-primary">Add to Discord <i class="fa-solid fa-arrow-trend-up"></i></a>
+                <a href="https://discord.com" class="btn-primary" target="_blank">Add to Discord <i class="fa-solid fa-arrow-trend-up"></i></a>
                 <a href="#commands" class="btn-secondary">Explore Modules</a>
             </div>
         </div>
     </header>
 
-    <!-- Live Performance Metrics Badge Section -->
+    <!-- Live Telemetry Monitor Badge Section -->
     <section class="metrics-bar">
         <div class="metric-card">
             <div class="metric-icon"><i class="fa-solid fa-network-wired"></i></div>
             <div class="metric-info">
                 <span class="metric-label">WebSocket Latency</span>
-                <span class="metric-value id="live-ping">16ms</span>
+                <span class="metric-value" id="live-ping">16ms</span>
             </div>
             <span class="status-indicator live"></span>
         </div>
@@ -56,30 +415,141 @@
                 <span class="metric-value">99.9% Uptime</span>
             </div>
         </div>
-    </nav>
-
-    <!-- Dynamic Commands Matrix -->
-    <section id="commands" class="section-container">
-        <h2 class="section-title">Operational Core Modules</h2>
-        <div class="search-wrapper">
-            <i class="fa-solid fa-magnifying-glass search-icon"></i>
-            <input type="text" id="command-search" placeholder="Search across 50+ security parameters (e.g., nuke, raid, lock)...">
-        </div>
-        <div class="commands-grid" id="commands-display">
-            <!-- Dynamic Injection through commands.js/script.js -->
-        </div>
     </section>
 
-    <!-- Comprehensive FAQ Accordion Matrix -->
-    <section id="faq" class="section-container">
-        <h2 class="section-title">Frequently Asked Matrix</h2>
-        <div class="faq-accordion" id="faq-matrix">
-            <!-- Dynamic Injection through script.js -->
-        </div>
-    </section>
+    <!-- Content Area Dynamic Wrapper -->
+    <main class="main-layout-wrapper">
+        
+        <!-- Live System Script Filters Section -->
+        <section id="commands" class="section-container">
+            <h2 class="section-title">Operational Core Modules</h2>
+            <div class="search-wrapper">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="command-search" placeholder="Search across security parameters (e.g., nuke, raid, lock)...">
+            </div>
+            <div class="commands-grid" id="commands-display">
+                <!-- JavaScript handles dynamic layout rendering directly here -->
+            </div>
+        </section>
 
-    <!-- Core Scripts Load -->
-    <script src="commands.js"></script>
-    <script src="script.js"></script>
+        <!-- Comprehensive Accordion Component Grid -->
+        <section id="faq" class="section-container">
+            <h2 class="section-title">Frequently Asked Matrix</h2>
+            <div class="faq-accordion" id="faq-matrix">
+                <!-- JavaScript handles dynamic FAQ content structures here -->
+            </div>
+        </section>
+        
+    </main>
+
+    <!-- Embedded Client Data Injection and Engine Logic Scripts -->
+    <script>
+        // 1. Core Config Data Modules Database Setup (Prefixed with %)
+        const commandsDataset = [
+            { trigger: "%antinuke enable", description: "Deploys the core administrative defense engine. Instantly tracks, halts, and restores malicious configuration overwrites." },
+            { trigger: "%whitelist add [ID]", description: "Permits specified security exemptions for high-tier team credentials, keeping execution patterns clean of firewall triggers." },
+            { trigger: "%antiraid on", description: "Enforces severe analytical filtering checkpoints over incoming user sequences, neutralizing bot-join scripts immediately." },
+            { trigger: "%lockdown channels", description: "Changes global administrative permissions on a microsecond layer, freezing interaction vectors for crisis control." },
+            { trigger: "%unwebhook isolate", description: "Searches structural configuration trees, stripping non-authenticated webhook pipelines out of guild assets." },
+            { trigger: "%security telemetry", description: "Outputs comprehensive technical evaluation metrics regarding active firewall configurations straight to private channels." }
+        ];
+
+        const faqDataset = [
+            { q: "How does Oxelate sustain an execution speed under 20ms?", a: "The architecture runs on hyper-optimized asynchronous loops hosted natively over high-end enterprise hardware lanes, cutting off middleware data processing bottlenecks entirely." },
+            { q: "What triggers the Anti-Nuke engine during a malicious breach?", a: "Mass administrative permissions edits, unauthorized channel deletions, or sudden high-frequency invite patterns will force the bot to freeze corresponding pipeline layers." },
+            { q: "Is registration or cloud sync setup mandatory?", a: "No. The system loads functional parameters straight from local state maps on initialization, preventing reliance on secondary sync platforms during high-stress operations." },
+            { q: "How does the caching array prevent memory crashes during heavy raids?", a: "Incoming payloads get automatically processed via adaptive rate limit sandboxes, ensuring target blocks are isolated before server memory structures exhaust threads." },
+            { q: "Does Oxelate replace default Discord logging setups?", a: "It completely upgrades them. By providing direct, un-editable cryptographic activity logs, developers get detailed tracing assets that rogue agents cannot alter." },
+            { q: "Can whitelists be restricted dynamically?", a: "Yes. Hierarchy parameters ensure that whitelisted accounts cannot manipulate variables higher than their allocated permission node." },
+            { q: "How do we initialize dashboard configurations?", a: "While the secure web UI panel is transitioning from alpha stages, global setups can be completely commanded straight from Discord text boundaries seamlessly." }
+        ];
+
+        // 2. Client Side Interaction Interface Loops
+        document.addEventListener("DOMContentLoaded", () => {
+            renderCommands(commandsDataset);
+            renderFAQ(faqDataset);
+
+            // Realtime WebSocket Target Mock Simulation Monitor (16ms - 20ms)
+            const pingDisplay = document.getElementById("live-ping");
+            setInterval(() => {
+                const activePing = Math.floor(Math.random() * (20 - 16 + 1)) + 16;
+                if(pingDisplay) {
+                    pingDisplay.textContent = `${activePing}ms`;
+                }
+            }, 3500);
+
+            // Local Search Matrix Event Core
+            const searchBar = document.getElementById("command-search");
+            if(searchBar) {
+                searchBar.addEventListener("input", (e) => {
+                    const keyword = e.target.value.toLowerCase();
+                    const filtered = commandsDataset.filter(cmd => 
+                        cmd.trigger.toLowerCase().includes(keyword) || 
+                        cmd.description.toLowerCase().includes(keyword)
+                    );
+                    renderCommands(filtered);
+                });
+            }
+        });
+
+        // HTML Node Generators Function Chains
+        function renderCommands(data) {
+            const target = document.getElementById("commands-display");
+            if(!target) return;
+            if(data.length === 0) {
+                target.innerHTML = `<div class="command-card" style="grid-column: 1/-1; text-align: center;"><span class="command-desc">No operational parameters match the requested search string...</span></div>`;
+                return;
+            }
+            target.innerHTML = data.map(item => `
+                <div class="command-card">
+                    <span class="command-trigger">${escapeHTML(item.trigger)}</span>
+                    <p class="command-desc">${escapeHTML(item.description)}</p>
+                </div>
+            `).join("");
+        }
+
+        function renderFAQ(data) {
+            const target = document.getElementById("faq-matrix");
+            if(!target) return;
+            target.innerHTML = data.map(item => `
+                <div class="faq-item">
+                    <div class="faq-header" onclick="toggleAccordion(this)">
+                        <span>${escapeHTML(item.q)}</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-content">
+                        <p>${escapeHTML(item.a)}</p>
+                    </div>
+                </div>
+            `).join("");
+        }
+
+        window.toggleAccordion = function(element) {
+            const item = element.parentElement;
+            const allItems = document.querySelectorAll('.faq-item');
+            
+            // Auto close other open items for cleaner interface animations
+            allItems.forEach(i => {
+                if(i !== item && i.classList.contains('active')) {
+                    i.classList.remove('active');
+                    i.querySelector('.faq-header i').className = "fa-solid fa-chevron-down";
+                }
+            });
+
+            item.classList.toggle("active");
+            const icon = element.querySelector("i");
+            if(item.classList.contains("active")) {
+                icon.className = "fa-solid fa-chevron-up";
+            } else {
+                icon.className = "fa-solid fa-chevron-down";
+            }
+        }
+
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+            );
+        }
+    </script>
 </body>
 </html>
